@@ -1,14 +1,16 @@
+#!/usr/bin/env node
+
 "use strict";
 
 var Liftoff = require('liftoff');
 
-const Patata = new Liftoff({
+var Patata = new Liftoff({
   name: 'patata',
   processTitle: 'patata',
   moduleName: 'patata',
-  configName: 'patatafile',
-  v8flags: ['--harmony'] // or v8flags: require('v8flags')
+  configName: 'patatafile'
 });
+
 Patata.launch({}, function(result) {
     var argv = require('yargs').argv;
     if (argv._.length === 0) {

@@ -1,12 +1,12 @@
 {
   "name": "patata-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Client for Patata",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma",
   "license": "Eridem AB. All rights reserved.",
   "bin": {
-      "patata": "index.js"
+      "patata": "bin/patata.js"
   },
   "keywords": [
     "patata"
