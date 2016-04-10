@@ -1,0 +1,19 @@
+{
+  "name": "patata-cli",
+  "version": "1.0.0",
+  "description": "Client for Patata",
+  "main": "index.js",
+  "author": "Miguel Ángel Domínguez Coloma",
+  "license": "Eridem AB. All rights reserved.",
+  "keywords": [
+    "patata",
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/patataio/patata-cli.git"
+  },
+  "dependencies": {
+    "liftoff": "^2.2.1",
+    "yargs": "^4.4.0"
+  }
+}
