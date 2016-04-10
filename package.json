@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma",
   "license": "Eridem AB. All rights reserved.",
+  "bin": {
+      "patata": "index.js"
+  },
   "keywords": [
     "patata"
   ],
