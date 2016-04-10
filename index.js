@@ -25,9 +25,9 @@ Patata.launch({}, function(result) {
     patata.init(argv._[0]);
 
     // Init cucumber
-    var Cucumber = require('./node_modules/cucumber/lib/cucumber');
-    var supportDir = process.cwd() + '\\node_modules\\patata\\dist\\js\\cucumber\\support\\';
-    var featuresDir = process.cwd() + '\\features\\';
+    var Cucumber = require(process.cwd() + '/node_modules/cucumber/lib/cucumber');
+    var supportDir = process.cwd() + '/node_modules/patata/dist/js/cucumber/support/';
+    var featuresDir = process.cwd() + '/features/';
     var cli = Cucumber.Cli(['','',"--require", supportDir, "--require", featuresDir, featuresDir]);
     cli.run(function (succeeded) {
     var code = succeeded ? 0 : 1;
@@ -45,4 +45,3 @@ Patata.launch({}, function(result) {
     });
 
 });
-
