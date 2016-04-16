@@ -1,5 +1,3 @@
 # Patata-cli
 
-In progress...
-
-[http://patata.io](http://patata.io)
+Client for Patata. More documentation about this usage on the [Patata README](https://bitbucket.org/patataio/patata/overview)!
