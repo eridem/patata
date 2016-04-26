@@ -23,12 +23,26 @@ Patata.launch({}, function(result) {
     
     // Init suite
     patata.init(argv._[0]);
-
+    
+    patata.currentSuite.features = 
+        patata.currentSuite.features && patata.currentSuite.features.length ? 
+        patata.currentSuite.features :
+        [ 'features' ];
+    
     // Init cucumber
     var Cucumber = require(process.cwd() + '/node_modules/cucumber/lib/cucumber');
     var supportDir = process.cwd() + '/node_modules/patata/dist/js/cucumber/support/';
-    var featuresDir = process.cwd() + '/features/';
-    var cli = Cucumber.Cli(['','',"--require", supportDir, "--require", featuresDir, featuresDir]);
+    
+    var defaultArgs = ['','', '--require', supportDir];
+    var featureRequireArgs = buildFeatureArgs(patata.currentSuite, true);    
+    var featureArgs = buildFeatureArgs(patata.currentSuite);    
+
+    var args = defaultArgs.concat(featureRequireArgs);
+    args = args.concat(featureArgs);
+    
+    console.log(args);
+    
+    var cli = Cucumber.Cli(args);
     cli.run(function (succeeded) {
     var code = succeeded ? 0 : 1;
 
@@ -45,3 +59,16 @@ Patata.launch({}, function(result) {
     });
 
 });
+
+function buildFeatureArgs(suite, useRequire) {
+    var result = [];
+    
+    for (var i = 0; i < suite.features.length; i++) {
+        if (useRequire) {
+            result.push('--require');
+        }
+        result.push(process.cwd() + '/' + suite.features[i]);
+    }
+    
+    return result;
+}
