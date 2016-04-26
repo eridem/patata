@@ -34,10 +34,13 @@ Patata.launch({}, function(result) {
     var supportDir = process.cwd() + '/node_modules/patata/dist/js/cucumber/support/';
     
     var defaultArgs = ['','', '--require', supportDir];
-    var featureRequireArgs = buildFeatureArgs(patata.currentSuite, true);    
-    var featureArgs = buildFeatureArgs(patata.currentSuite);    
-
-    var args = defaultArgs.concat(featureRequireArgs);
+    var featureRequireArgs = buildRequire(patata.currentSuite.features);    
+    var componentsRequireArgs = buildRequire(patata.currentSuite.components);
+    var featureArgs = buildNoRequire(patata.currentSuite);
+    
+    var args = defaultArgs;
+    args = args.concat(featureRequireArgs);
+    args = args.concat(componentsRequireArgs);
     args = args.concat(featureArgs);
     
     console.log(args);
@@ -60,14 +63,22 @@ Patata.launch({}, function(result) {
 
 });
 
-function buildFeatureArgs(suite, useRequire) {
+function buildRequire(anyArray) {
+    return buildWithArgs(anyArray, '--require');
+}
+
+function buildNoRequire(anyArray) {
+    return buildWithArgs(anyArray, null);
+}
+
+function buildWithArgs(anyArray, argName) {
     var result = [];
     
-    for (var i = 0; i < suite.features.length; i++) {
-        if (useRequire) {
-            result.push('--require');
+    for (var i = 0; i < anyArray.length; i++) {
+        if (argName) {
+            result.push(argName);
         }
-        result.push(process.cwd() + '/' + suite.features[i]);
+        result.push(process.cwd() + '/' + anyArray[i]);
     }
     
     return result;
