@@ -1,6 +1,6 @@
 {
   "name": "patata-cli",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Client for Patata",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma",

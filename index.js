@@ -28,6 +28,11 @@ Patata.launch({}, function(result) {
         patata.currentSuite.features && patata.currentSuite.features.length ? 
         patata.currentSuite.features :
         [ 'features' ];
+        
+    patata.currentSuite.servers =    
+        patata.currentSuite.servers && patata.currentSuite.servers.length ? 
+        patata.currentSuite.servers :
+        [{ host: 'localhost', port: 4723 }]; 
     
     // Init cucumber
     var Cucumber = require(process.cwd() + '/node_modules/cucumber/lib/cucumber');
