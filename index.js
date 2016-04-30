@@ -23,11 +23,11 @@ Patata.launch({}, function(result) {
     
     // Fix default values
     var currentSuite = patata.getSuite(argv._[0]);
-        
-    currentSuite.features = 
-        currentSuite.features && currentSuite.features.length ? 
-        currentSuite.features :
-        [ 'features' ];
+       
+    currentSuite.features = currentSuite.features || {};
+    currentSuite.features.files = currentSuite.features.files || [];
+    currentSuite.features.tags = currentSuite.features.tags || [];
+    currentSuite.features.scenarios = currentSuite.features.scenarios || [];
         
     currentSuite.servers =    
         currentSuite.servers && currentSuite.servers.length ? 
@@ -44,90 +44,45 @@ Patata.launch({}, function(result) {
     var supportDir = process.cwd() + '/node_modules/patata/dist/js/cucumber/support/';
     
     var defaultArgs = ['','', '--require', supportDir];
-    var tagArgs = buildTags(patata.currentSuite.features);
-    var scenarioArgs = buildScenarios(patata.currentSuite.features);
-    var componentsRequireArgs = buildRequire(patata.currentSuite.components);
-    var featureRequireArgs = buildFeatures(patata.currentSuite.features);
-    var featureArgs = buildNoRequire(patata.currentSuite.features);
     
+    var featureFilesArgs =      buildWithArgs('', patata.currentSuite.features.files, '');
+    var featureTagArgs =        buildWithArgs('', patata.currentSuite.features.tags, '--tags');
+    var featureScenarioArgs =   buildWithArgs('', patata.currentSuite.features.scenarios, '--name');
+    
+    var componentsArgs =        buildWithArgs(process.cwd() + '/', patata.currentSuite.components, '--require');
+    var implementationArgs =    buildWithArgs(process.cwd() + '/', patata.currentSuite.implementations, '--require');
+
+    // Build cucumber args
     var args = defaultArgs;
-    args = args.concat(tagArgs);
-    args = args.concat(scenarioArgs);
-    args = args.concat(componentsRequireArgs);
-    args = args.concat(featureRequireArgs);
-    args = args.concat(featureArgs);
+    args = args.concat(featureTagArgs);
+    args = args.concat(featureScenarioArgs);
+    args = args.concat(componentsArgs);
+    args = args.concat(implementationArgs);
+    args = args.concat(featureFilesArgs);
     
-    console.log("Tags:\t\t" + tagArgs.toString());
-    console.log("Scenarios:\t" + scenarioArgs);
-    console.log("Components:\t" + componentsRequireArgs);
-    console.log("Features:\t" + featureRequireArgs);
+    console.log("Tags:\t\t " + patata.currentSuite.features.tags);
+    console.log("Scenarios:\t " + patata.currentSuite.features.scenarios);
+    console.log("Components:\t " + patata.currentSuite.components);
+    console.log("Implementations: " + patata.currentSuite.implementations);
+    console.log("Features:\t " + patata.currentSuite.features.files);
    
+    // Init cucumber with args
     var cli = Cucumber.Cli(args);
     cli.run(function (succeeded) {
-    var code = succeeded ? 0 : 1;
+        var code = succeeded ? 0 : 1;
 
-    function exitNow() {
-        process.exit(code);
-    }
+        function exitNow() {
+            process.exit(code);
+        }
 
-    if (process.stdout.write('')) {
-        exitNow();
-    } else {
-        // write() returned false, kernel buffer is not empty yet...
-        process.stdout.on('drain', exitNow);
-    }
+        if (process.stdout.write('')) {
+            exitNow();
+        } else {
+            // write() returned false, kernel buffer is not empty yet...
+            process.stdout.on('drain', exitNow);
+        }
     });
-
 });
-
-function buildTags(anyArray) {
-    var tags = [];
-    for (var i = 0; i < anyArray.length; i++) {
-        var item = anyArray[i];
-        if (typeof item === 'string' && (item.startsWith('@') || item.startsWith('~@'))) {
-            tags.push(item);
-        }
-    }
-    return buildWithArgs('', tags, '--tags');
-}
-
-function buildScenarios(anyArray) {
-    var scenarios = [];
-    for (var i = 0; i < anyArray.length; i++) {
-        var item = anyArray[i];
-        if (item instanceof RegExp) {
-            scenarios.push(item.toString());
-        }
-    }
-    return buildWithArgs('', scenarios, '--name');
-}
-
-function buildFeatures(anyArray) {
-    var features = [];
-    for (var i = 0; i < anyArray.length; i++) {
-        var item = anyArray[i];
-        if (!(typeof item === 'string' && (item.startsWith('@') || item.startsWith('~@'))) && !(item instanceof RegExp)) {
-            features.push(item);
-        }
-    }
-    return buildWithArgs(process.cwd() + '/', features, '--require');
-}
-
-function buildRequire(anyArray) {
-    return buildWithArgs(process.cwd() + '/', anyArray, '--require');
-}
-
-function buildNoRequire(anyArray) {
-    var features = [];
-    for (var i = 0; i < anyArray.length; i++) {
-        var item = anyArray[i];
-        if (!(typeof item === 'string' && (item.startsWith('@') || item.startsWith('~@'))) && !(item instanceof RegExp)) {
-            features.push(item);
-        }
-    }
-    
-    return buildWithArgs(process.cwd() + '/', features, null);
-}
 
 function buildWithArgs(prefix, anyArray, argName) {
     var result = [];
