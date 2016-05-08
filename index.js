@@ -5,6 +5,8 @@
 var Liftoff = require('liftoff');
 var getPort = require('get-port');
 var Q = require('q');
+var colors = require('colors');
+
 var appiumApp;
 
 var Patata = new Liftoff({
@@ -15,6 +17,8 @@ var Patata = new Liftoff({
 });
 
 Patata.launch({}, function(result) {
+    printLogo();
+    
     var argv = require('yargs').argv;
     if (argv._.length === 0) {
         throw "No suites launched. Please use: patata [suite]";
@@ -119,7 +123,7 @@ function createCucumberArgs(patata) {
     var featureScenarioArgs =   buildWithArgs('', patata.currentSuite.features.scenarios, '--name');
     
     var componentsArgs =        buildWithArgs(process.cwd() + '/', patata.currentSuite.components, '--require');
-    var implementationArgs =    buildWithArgs(process.cwd() + '/', patata.currentSuite.implementations, '--require');
+    var implementationArgs =    buildWithArgs(process.cwd() + '/', patata.currentSuite.include, '--require');
 
     // Build cucumber args
     var args = defaultArgs;
@@ -130,11 +134,7 @@ function createCucumberArgs(patata) {
     args = args.concat(featureFilesArgs);
     
     // Print on screen
-    console.log("\nTags:\t\t " + patata.currentSuite.features.tags);
-    console.log("Scenarios:\t " + patata.currentSuite.features.scenarios);
-    console.log("Components:\t " + patata.currentSuite.components);
-    console.log("Implementations: " + patata.currentSuite.implementations);
-    console.log("Features:\t " + patata.currentSuite.features.files);
+    printMessage(patata);
     
     return args;
 }
@@ -183,4 +183,24 @@ function buildWithArgs(prefix, anyArray, argName) {
     }
     
     return result;
+}
+
+function printMessage(patata) {
+    console.log("Tags:".cyan, "\t\t " + patata.currentSuite.features.tags);
+    console.log("Scenarios:".cyan, "\t " + patata.currentSuite.features.scenarios);
+    console.log("Components:".cyan, "\t " + patata.currentSuite.components);
+    console.log("Include:".cyan, "\t " + patata.currentSuite.include);
+    console.log("Features:".cyan, "\t " + patata.currentSuite.features.files);
+    console.log("\n");
+}
+
+function printLogo() {    
+    console.log(
+        "                  __             __                __\n".yellow +
+        "______  _____   _/  |_ _____   _/  |_ _____       |__|  ____\n".yellow +
+        "\\____ \\ \\__  \\  \\   __\\\\__  \\  \\   __\\\\__  \\      |  | /  _ \\\n".yellow +
+        "|  |_> > / __ \\_ |  |   / __ \\_ |  |   / __ \\_    |  |(  <_> )\n".yellow +
+        "|   __/ (____  / |__|  (____  / |__|  (____  / /\\ |__| \\____/\n".yellow +
+        "|__|         \\/             \\/             \\/  \\/\n".yellow
+    );                                     
 }
