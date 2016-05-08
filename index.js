@@ -3,6 +3,8 @@
 "use strict";
 
 var Liftoff = require('liftoff');
+var getPort = require('get-port');
+var Q = require('q');
 
 var Patata = new Liftoff({
   name: 'patata',
@@ -17,32 +19,88 @@ Patata.launch({}, function(result) {
         throw "No suites launched. Please use: patata [suite]";
     }
     
+    // Get suite name
+    var suiteCli = argv._[0];
+    
     // Require patatafile
     require(result.configPath);
     var patata = require(result.modulePath);
-    
-    // Fix default values
-    var currentSuite = patata.getSuite(argv._[0]);
        
-    currentSuite.features = currentSuite.features || {};
-    currentSuite.features.files = currentSuite.features.files || [];
-    currentSuite.features.tags = currentSuite.features.tags || [];
-    currentSuite.features.scenarios = currentSuite.features.scenarios || [];
+    // Fix default values
+    fixDefaultValues(patata, suiteCli).then(function(patata) {
+        // Current suite
+        var currentSuite = patata.getSuite(suiteCli);
         
-    currentSuite.servers =    
-        currentSuite.servers && currentSuite.servers.length ? 
-        currentSuite.servers :
-        [{ host: 'localhost', port: 4723 }]; 
+        // Start appium
+        startAppium(currentSuite);
+        
+        // Init suite
+        patata.init(suiteCli);
+        
+        // Create cucumber args
+        var cucumberArgs = createCucumberArgs(patata);
     
-    patata.suite(argv._[0], currentSuite);
+        // Init cucumber with args
+        startCucumber(cucumberArgs);
+    });
+});
+
+//
+// Fix default suite values that were optional
+// on the patata configuration suite from patatafile.js
+//
+function fixDefaultValues(patata, suiteCli) {
+    var deferred = Q.defer();
     
-    // Init suite
-    patata.init(argv._[0]);
+    getPort().then(function(port) {    
+        // Current suite
+        var currentSuite = patata.getSuite(suiteCli);
+         
+        // Fix features default values
+        currentSuite.features = currentSuite.features || {};
+        currentSuite.features.files = currentSuite.features.files || [];
+        currentSuite.features.tags = currentSuite.features.tags || [];
+        currentSuite.features.scenarios = currentSuite.features.scenarios || [];
+            
+        // Fix server default values
+        currentSuite.servers =    
+            currentSuite.servers && currentSuite.servers.length ? 
+            currentSuite.servers :
+            [{ host: 'localhost', port: port }]; 
+        
+        // Replace previous suite with complete values
+        patata.suite(suiteCli, currentSuite);
+        
+        // Return
+        deferred.resolve(patata, suiteCli);
+    });
     
-    // Init cucumber
-    var Cucumber = require(process.cwd() + '/node_modules/cucumber/lib/cucumber');
+    return deferred.promise;
+}
+
+//
+// Start appium based on the patata configuration suite
+// 
+function startAppium(currentSuite) {
+    // User first server (TODO: be able to use more servers)
+    var server = currentSuite.servers[0];
+    
+    // Create appium arguments
+    var cmd = 'appium -p ' + server.port + ' -a ' + server.host;
+    
+    // Exec appium
+    require('child_process').exec(cmd);
+}
+
+//
+// Create the neccesary cucumber args based on
+// the patata configuration suite.
+//
+function createCucumberArgs(patata) {
+    // Load Patata support files for Cucumber
     var supportDir = process.cwd() + '/node_modules/patata/dist/js/cucumber/support/';
-    
+        
+    // Create default arguments for cucumber
     var defaultArgs = ['','', '--require', supportDir];
     
     var featureFilesArgs =      buildWithArgs('', patata.currentSuite.features.files, '');
@@ -60,15 +118,24 @@ Patata.launch({}, function(result) {
     args = args.concat(implementationArgs);
     args = args.concat(featureFilesArgs);
     
-    console.log("Tags:\t\t " + patata.currentSuite.features.tags);
+    // Print on screen
+    console.log("\nTags:\t\t " + patata.currentSuite.features.tags);
     console.log("Scenarios:\t " + patata.currentSuite.features.scenarios);
     console.log("Components:\t " + patata.currentSuite.components);
     console.log("Implementations: " + patata.currentSuite.implementations);
     console.log("Features:\t " + patata.currentSuite.features.files);
-   
-    // Init cucumber with args
-    var cli = Cucumber.Cli(args);
-    cli.run(function (succeeded) {
+    
+    return args;
+}
+
+//
+// Start cucumber cli based on arguments
+//
+function startCucumber(args) {
+    // Init cucumber
+    var Cucumber = require(process.cwd() + '/node_modules/cucumber/lib/cucumber');
+    var cucumberCli = Cucumber.Cli(args);
+    var cucumberCliAction = function (succeeded) {
         var code = succeeded ? 0 : 1;
 
         function exitNow() {
@@ -81,9 +148,17 @@ Patata.launch({}, function(result) {
             // write() returned false, kernel buffer is not empty yet...
             process.stdout.on('drain', exitNow);
         }
-    });
-});
+    };
 
+    cucumberCli.run(cucumberCliAction);
+}
+
+//
+// Create an cli arguments based on an array and prefix. If not prefix, pass null.
+// Eg. (prefix = '--letter') and (anyArray = ['a','b','c'])
+//     Result: ['--letter a', '--letter b', '--letter c']
+// Useful to create arguments for appium cli
+//
 function buildWithArgs(prefix, anyArray, argName) {
     var result = [];
     

@@ -1,12 +1,12 @@
 {
   "name": "patata-cli",
-  "version": "1.1.01",
+  "version": "1.1.2",
   "description": "Client for Patata",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma",
   "license": "MIT",
   "bin": {
-      "patata": "bin/patata.js"
+    "patata": "bin/patata.js"
   },
   "keywords": [
     "patata"
@@ -16,7 +16,9 @@
     "url": "https://bitbucket.org/patataio/patata-cli.git"
   },
   "dependencies": {
+    "get-port": "^2.1.0",
     "liftoff": "^2.2.1",
+    "q": "^1.4.1",
     "yargs": "^4.4.0"
   }
 }
