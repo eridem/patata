@@ -5,6 +5,7 @@
 var Liftoff = require('liftoff');
 var getPort = require('get-port');
 var Q = require('q');
+var appiumApp;
 
 var Patata = new Liftoff({
   name: 'patata',
@@ -32,16 +33,16 @@ Patata.launch({}, function(result) {
         var currentSuite = patata.getSuite(suiteCli);
         
         // Start appium
-        startAppium(currentSuite);
+        startAppium(currentSuite).then(() => {
+            // Init suite
+            patata.init(suiteCli);
+            
+            // Create cucumber args
+            var cucumberArgs = createCucumberArgs(patata);
         
-        // Init suite
-        patata.init(suiteCli);
-        
-        // Create cucumber args
-        var cucumberArgs = createCucumberArgs(patata);
-    
-        // Init cucumber with args
-        startCucumber(cucumberArgs);
+            // Init cucumber with args
+            startCucumber(cucumberArgs);
+        });
     });
 });
 
@@ -89,7 +90,17 @@ function startAppium(currentSuite) {
     var cmd = 'appium -p ' + server.port + ' -a ' + server.host;
     
     // Exec appium
-    require('child_process').exec(cmd);
+    appiumApp = require('child_process').exec(cmd);
+    
+    var deferred = Q.defer();
+    setTimeout(deferred.resolve, 3000);
+    return deferred.promise;
+}
+
+function stopAppium() {
+    if (appiumApp) {
+        appiumApp.exit();
+    }
 }
 
 //
@@ -150,7 +161,9 @@ function startCucumber(args) {
         }
     };
 
-    cucumberCli.run(cucumberCliAction);
+    cucumberCli.run(cucumberCliAction).then(function() {
+        stopAppium();   
+    });
 }
 
 //
