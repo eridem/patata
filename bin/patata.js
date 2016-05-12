@@ -1,5 +1,3 @@
 #!/usr/bin/env node
-
 'use strict';
-
-require('../index.js'); 
+require('../index.js');
