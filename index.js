@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 "use strict";
 
 var Liftoff = require('liftoff');
@@ -46,7 +44,11 @@ Patata.launch({}, function(result) {
         
             // Init cucumber with args
             startCucumber(cucumberArgs);
+        }).catch(function(error) {
+            throw new Error(error);
         });
+    }).catch(function(error) {
+        throw new Error(error);
     });
 });
 
