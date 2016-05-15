@@ -68,6 +68,9 @@ function fixDefaultValues(patata, suiteCli) {
         currentSuite.features.files = currentSuite.features.files || [];
         currentSuite.features.tags = currentSuite.features.tags || [];
         currentSuite.features.scenarios = currentSuite.features.scenarios || [];
+        
+        // Reports
+        currentSuite.reports = currentSuite.reports || [];
             
         // Fix server default values
         currentSuite.servers =    
@@ -193,6 +196,7 @@ function printMessage(patata) {
     console.log("Components:".cyan, "\t " + patata.currentSuite.components);
     console.log("Include:".cyan, "\t " + patata.currentSuite.include);
     console.log("Features:".cyan, "\t " + patata.currentSuite.features.files);
+    console.log("Reports:".cyan, "\t " + patata.reports);
     console.log("\n");
 }
 
