@@ -1,3 +1,3 @@
 #!/usr/bin/env node
 'use strict';
-require('../index.js');
+require('../patata-cli.js');
