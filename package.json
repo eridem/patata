@@ -19,11 +19,6 @@
     "url": "https://bitbucket.org/patataio/patata-cli.git"
   },
   "dependencies": {
-    "appium": "^1.5.2",
-    "colors": "^1.1.2",
-    "get-port": "^2.1.0",
-    "liftoff": "^2.2.1",
-    "q": "^1.4.1",
-    "yargs": "^4.4.0"
+    "liftoff": "^2.2.1"
   }
 }
