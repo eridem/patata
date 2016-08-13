@@ -1,12 +1,10 @@
 {
   "name": "patata-cli",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Client for Patata",
   "main": "patata-cli.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
-  "contributors": [
-    
-  ],
+  "contributors": [],
   "license": "MIT",
   "bin": {
     "patata": "bin/index.js"
@@ -19,6 +17,8 @@
     "url": "https://bitbucket.org/patataio/patata-cli.git"
   },
   "dependencies": {
-    "liftoff": "^2.2.1"
+    "colors": "^1.1.2",
+    "liftoff": "^2.2.1",
+    "yargs": "^4.8.1"
   }
 }
