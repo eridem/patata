@@ -1,6 +1,12 @@
 'use strict'
 
 module.exports = {
+  'init': {
+    alias: 'i',
+    demand: false,
+    describe: 'Create new patata project',
+    type: 'string'
+  },
   'suite': {
     alias: 's',
     demand: false,

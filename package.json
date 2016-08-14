@@ -17,8 +17,11 @@
     "url": "https://bitbucket.org/patataio/patata-cli.git"
   },
   "dependencies": {
+    "cli-spinners": "^0.2.0",
     "colors": "^1.1.2",
+    "inquirer": "^1.1.2",
     "liftoff": "^2.2.1",
+    "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
   }
 }
