@@ -20,6 +20,9 @@ if (args.init === '' || args.init && args.init.length) {
   // Run suite
   displayOption('Run suite')
   require('./lib/run-suite')(args.suite);
+/*} else if (args.run) {
+  // Run custom suite
+  require('./lib/run-custom-suite')(args)*/
 } else if (args.feature) {
   // Run suite
   displayOption('Create feature')

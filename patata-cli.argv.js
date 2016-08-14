@@ -7,6 +7,12 @@ module.exports = {
     describe: 'Create new patata project',
     type: 'string'
   },
+  /*'run': {
+    alias: 'r',
+    demand: false,
+    describe: 'Run a custom suite. Other arguments are optional or it will question them.',
+    type: 'void'
+  },*/
   'suite': {
     alias: 's',
     demand: false,
