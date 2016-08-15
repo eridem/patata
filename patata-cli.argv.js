@@ -19,9 +19,10 @@ module.exports = {
     describe: 'Run an specific suite',
     type: 'string'
   },
-  'create-suite': {
+  'create-feature': {
+    alias: 'f',
     demand: false,
-    describe: 'Absolute path to the aapt executable',
+    describe: 'Create a feature file structure and example',
     type: 'string'
   }
 }

@@ -1,51 +1,40 @@
 'use strict'
 
+const path = require('path')
+const exampleFolder = path.join(__dirname, './lib/examples')
 const colors = require('colors')
 const yargs = require('yargs')
     .help('h')
     .alias('h', 'help')
     .usage('Usage: patata <command> [options]')
     .options(require('./patata-cli.argv'))
-    
 const args = yargs.argv
+const log = require('./log')
 
 if (args.init === '' || args.init && args.init.length) {
-  displayOption('Init Patata project')
-  require('./lib/init')(args, new Loader())
+  log.log('Init Patata project')
+  require('./lib/init')(args, log, exampleFolder)
+
 } else if (args.suite === '') {
   // Show suites
-  displayOption('Available suites')
-  require('./lib/show-suites')()
+  log.log('Available suites')
+  require('./lib/show-suites')(log)
+
 } else if (args.suite && args.suite.length) {
   // Run suite
-  displayOption('Run suite')
+  log.log('Run suite')
   require('./lib/run-suite')(args.suite);
+
 /*} else if (args.run) {
   // Run custom suite
   require('./lib/run-custom-suite')(args)*/
-} else if (args.feature) {
+} else if (args.createFeature === '') {
   // Run suite
-  displayOption('Create feature')
-  require('./lib/create-feature')(args, new Loader());
+  log.log('Create feature')
+  require('./lib/create-feature')(args, log, exampleFolder);
+  
 } 
 else {
   yargs.showHelp();
   return;
-}
-
-function displayOption(message) {
-  console.log(`[Option: ${message}]`.white.bold.underline)
-}
-
-function Loader () {
-  this.spinner = null
-}
-Loader.prototype.log = function(message) {
-  console.log(`[Patata]`.yellow, ` ${message}`.gray);
-}
-Loader.prototype.start = function (message) {
-  this.log(message)
-}
-Loader.prototype.stop = function () {
-  //this.spinner.stop()
 }
