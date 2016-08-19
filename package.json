@@ -1,6 +1,6 @@
 {
   "name": "patata-cli",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Client for Patata",
   "main": "patata-cli.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
@@ -19,7 +19,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "inquirer": "^1.1.2",
-    "liftoff": "^2.2.1",
+    "liftoff": "^2.3.0",
     "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
   }
