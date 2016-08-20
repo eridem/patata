@@ -22,5 +22,10 @@
     "liftoff": "^2.3.0",
     "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-mocha": "^3.0.1",
+    "mocha": "^3.0.2"
   }
 }
