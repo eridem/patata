@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/patataio/patata-cli.git"
+    "url": "git@github.com:eridem/patata-cli.git"
   },
   "dependencies": {
     "colors": "^1.1.2",
