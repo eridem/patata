@@ -5,6 +5,7 @@ gulp.task('default', () =>
     gulp.src('./test/*.js')
         .pipe(mocha())
         .once('error', () => {
+            console.log(arguments[2])
             process.exit(1);
         })
         .once('end', () => {
