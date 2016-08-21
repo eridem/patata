@@ -12,9 +12,9 @@ const args = yargs.argv
 const log = require('./log')
 
 if (args.init === '' || args.init && args.init.length) {
-  log.log('Init Patata project')
-  require('./lib/init')(args, log, exampleFolder)
-
+  Promise.all([require('./lib/init')(args, log, exampleFolder)])
+    .then(() => log.log('DONE'))
+    .catch((ex) => log.exit(JSON.stringify(arguments)))
 } else if (args.suite === '') {
   // Show suites
   log.log('Available suites')

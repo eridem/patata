@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "BDD project for Native Mobile using Patata",
+  "main": "patatafile.js",
+  "scripts": {
+    "test": "patata"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"  
+}
