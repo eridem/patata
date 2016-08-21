@@ -1,6 +1,6 @@
 
-# Tag for android, ios or both if the feature is contained on them
-@android @ios @ci
+# Android only
+@android @ci
 Feature: Awesome feature
   As a user of Patata
   I want to have a scaffolding tool

@@ -11,3 +11,7 @@ gulp.task('default', () =>
             process.exit();
         })
 );
+
+gulp.task('developing', () => {
+    gulp.watch(['test/', 'lib/'], ['default']);
+})

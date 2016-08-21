@@ -28,11 +28,9 @@ if (args.init === '' || args.init && args.init.length) {
 /*} else if (args.run) {
   // Run custom suite
   require('./lib/run-custom-suite')(args)*/
-} else if (args.createFeature === '') {
-  // Run suite
-  log.log('Create feature')
-  require('./lib/create-feature')(args, log, exampleFolder);
-  
+} else if (args.feature === '') {
+  // Create feature
+  require('./lib/create-feature')(args, log, exampleFolder);  
 } 
 else {
   yargs.showHelp();

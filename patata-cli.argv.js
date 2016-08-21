@@ -19,7 +19,7 @@ module.exports = {
     describe: 'Run an specific suite',
     type: 'string'
   },
-  'create-feature': {
+  'feature': {
     alias: 'f',
     demand: false,
     describe: 'Create a feature file structure and example',

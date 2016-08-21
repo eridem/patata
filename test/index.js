@@ -1,9 +1,16 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
+"use strict"
+
+const chai = require('chai')
+const path = require('path')
+
+let expect = chai.expect
+  , should = chai.should()
+  , assert = chai.assert;
+
+let HockeyAppProvider = require(path.join(__dirname, '..', 'index'));
+
+describe('PatataProviderHockeyApp', function() {
+  describe('constructor', function () {
+
   });
 });
-
