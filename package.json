@@ -6,6 +6,7 @@
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
   "contributors": [],
   "license": "MIT",
+  "homepage": "http://patata.io",
   "bin": {
     "patata": "bin/index.js"
   },
@@ -18,10 +19,8 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
-    "inquirer": "^1.1.2",
     "latest": "^0.2.0",
-    "liftoff": "^2.3.0",
-    "node-latest": "^3.1.0",
+    "patata-provider-hockeyapp": "^1.1.2",
     "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
   },

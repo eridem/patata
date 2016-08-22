@@ -2,17 +2,16 @@
 
 module.exports = {
   'init': {
-    alias: 'i',
     demand: false,
     describe: 'Create new patata project',
     type: 'string'
   },
-  /*'run': {
-    alias: 'r',
+  'install': {
+    alias: 'i',
     demand: false,
-    describe: 'Run a custom suite. Other arguments are optional or it will question them.',
-    type: 'void'
-  },*/
+    describe: 'Install dependencies on an existing project',
+    type: 'boolean'
+  },
   'suite': {
     alias: 's',
     demand: false,
@@ -23,6 +22,18 @@ module.exports = {
     alias: 'f',
     demand: false,
     describe: 'Create a feature file structure and example',
+    type: 'string'
+  },
+  'run-android': {
+    alias: 'ra',
+    demand: false,
+    describe: 'Run tests on an Android device',
+    type: 'string'
+  },
+  'run-ios': {
+    alias: 'ri',
+    demand: false,
+    describe: 'Run tests on an iOS device',
     type: 'string'
   }
 }
