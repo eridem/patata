@@ -8,7 +8,7 @@ const yargs = require('yargs')
   .alias('h', 'help')
   .usage('Usage: patata <command> [options]')
   .options(require('./patata-cli.argv'))
-const args = yargs.argv
+const argv = yargs.argv
 const log = require('./log')
 const packageJson = require('./package.json')
 
@@ -31,34 +31,38 @@ const onSuccess = () => {
 }
 
 // Init
-if (args.init === '' || args.init && args.init.length) {
-  Promise.all([require('./lib/init')(args, log, exampleFolder)])
+if (argv.init === '' || argv.init && argv.init.length) {
+  Promise.all([require('./lib/init')(argv, log, exampleFolder)])
     .then(onSuccess)
     .catch(onError)
 
 // Install
-} else if (args.install) {
-  Promise.all([require('./lib/install')(args, log, exampleFolder)])
+} else if (argv.install) {
+  Promise.all([require('./lib/install')(argv, log, exampleFolder)])
     .then(onSuccess)
     .catch(onError)
 
 // Show Suite
-} else if (args.suite === '') {
-    Promise.all([require('./lib/show-suites')(args, log, exampleFolder)])
+} else if (argv.suite === '') {
+    Promise.all([require('./lib/show-suites')(argv, log, exampleFolder)])
     .then(onSuccess)
     .catch(onError)
 
 // Run Suite
-} else if (args.suite && args.suite.length) {
-  require('./lib/run-suite')(args.suite)
+} else if (argv.suite && argv.suite.length) {
+    Promise.all([require('./lib/run-suite')(argv, log, exampleFolder)])
+    .then(onSuccess)
+    .catch(onError)
 
 // Create feature
-} else if (args.feature && args.feature.length) {
-  require('./lib/create-feature')(args, log, exampleFolder)
+} else if (argv.feature && argv.feature.length) {
+    Promise.all([require('./lib/create-feature')(argv, log, exampleFolder)])
+    .then(onSuccess)
+    .catch(onError)
 
 // Run Android or iOS
-} else if (args.runAndroid !== '' || args.runIOS !== '') {
-  Promise.all([require('./lib/run')(args, log, exampleFolder)])
+} else if (argv.runAndroid !== '' || argv.runIOS !== '') {
+  Promise.all([require('./lib/run')(argv, log, exampleFolder)])
     .then(onSuccess)
     .catch(onError)
 

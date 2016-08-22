@@ -12,7 +12,7 @@ module.exports = {
     console.log(`[Patata]`.yellow, message, description ? description : '')
   },
   exit: function (message, exitCode) {
-    console.error(`[Patata]`.yellow, ` ${message}`.red)
+    console.error(`[Patata]`.yellow, message.red)
     process.exit(exitCode || 1)
   }
 }
