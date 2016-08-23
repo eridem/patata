@@ -19,8 +19,10 @@
   },
   "dependencies": {
     "colors": "^1.1.2",
+    "glob": "^7.0.5",
     "latest": "^0.2.0",
     "patata-provider-hockeyapp": "^1.1.2",
+    "rulet": "^1.0.2",
     "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
   },

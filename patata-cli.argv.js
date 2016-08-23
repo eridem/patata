@@ -35,5 +35,11 @@ module.exports = {
     demand: false,
     describe: 'Run tests on an iOS device',
     type: 'string'
+  },
+  'hockeyapp-set-token': {
+    alias: 'hst',
+    demand: false,
+    describe: 'Save HockeyApp token to access to its apps',
+    type: 'string'
   }
 }

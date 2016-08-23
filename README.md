@@ -64,9 +64,18 @@ Filters are based on the attribute names from the [HockeyApp API Versions](https
 patata --init NAME
 patata --install
 patata --create-feature NAME
-patata --create-component NAME [--byId=] [--byContentDescription=] [--byXPath=]
+#patata --create-component NAME [--byId=] [--byContentDescription=] [--byXPath=]
 patata --run-android URI [--tags=....] [--device=...]
 patata --run-ios URI [--tags=....] [--device=...]
+
+patata -s
+patata -s NAME
+
+patata --hockeyapp-set-token TOKEN
+```
+
+```
+patata --run-android "hockeyapp:Betsson QA:filter(notes=/.*my custom release.*/gi)"
 ```
 
 # We do the file structure, you fill the test cases

@@ -60,8 +60,14 @@ if (argv.init === '' || argv.init && argv.init.length) {
     .then(onSuccess)
     .catch(onError)
 
+// Set HockeyApp token
+} else if (argv.hockeyappSetToken && argv.hockeyappSetToken.length) {
+    Promise.all([require('./lib/hockeyapp-set-token')(argv, log, exampleFolder)])
+    .then(onSuccess)
+    .catch(onError)
+
 // Run Android or iOS
-} else if (argv.runAndroid !== '' || argv.runIOS !== '') {
+} else if (argv['run-android'] || argv['run-ios']) {
   Promise.all([require('./lib/run')(argv, log, exampleFolder)])
     .then(onSuccess)
     .catch(onError)
