@@ -1,6 +1,6 @@
 {
   "name": "patata-cli",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "Client for Patata",
   "main": "patata-cli.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
