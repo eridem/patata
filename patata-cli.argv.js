@@ -3,49 +3,74 @@
 module.exports = {
   'init': {
     demand: false,
-    describe: 'Create new patata project',
+    nargs: 0,
+    describe: 'Create new patata project.',
     type: 'string'
   },
   'install': {
     alias: 'i',
     demand: false,
-    describe: 'Install dependencies on an existing project',
+    nargs: 0,
+    describe: 'Install dependencies on an existing project.',
     type: 'boolean'
-  },
-  'suite': {
-    alias: 's',
-    demand: false,
-    describe: 'Run an specific suite',
-    type: 'string'
   },
   'feature': {
     alias: 'f',
     demand: false,
-    describe: 'Create a feature file structure and example',
+    nargs: 1,
+    describe: 'Create a feature file structure and example.',
     type: 'string'
   },
-  'run-android': {
-    alias: 'ra',
+  'component': {
+    alias: 'c',
     demand: false,
-    describe: 'Run tests on an Android device',
+    nargs: 1,
+    describe: 'Create a new component.',
     type: 'string'
   },
-  'run-ios': {
-    alias: 'ri',
+  'run': {
+    alias: 'r',
     demand: false,
-    describe: 'Run tests on an iOS device',
+    nargs: 1,
+    describe: 'Run test based on a file, uri or HockeyApp.',
     type: 'string'
   },
-  'hockeyapp-set-token': {
-    alias: 'hst',
+  '-set-setting': {
+    alias: 's',
     demand: false,
-    describe: 'Save HockeyApp token to access to its apps',
+    nargs: 2,
+    describe: 'Set global settings on the ".patata.yml"',
     type: 'string'
   },
-  'component-common': {
-    alias: 'cc',
+  'by': {
     demand: false,
-    describe: 'Create a new component',
+    nargs: 2,
+    type: 'string'
+  },
+  'ios': {
+    demand: false,
+    nargs: 0,
+    describe: 'In combination with other commands, specify it is only iOS related',
+    type: 'boolean'
+  },
+  'android': {
+    demand: false,
+    nargs: 0,
+    describe: 'In combination with other commands, specify it is only Android related',
+    type: 'boolean'
+  },
+  'common': {
+    demand: false,
+    nargs: 0,
+    describe: 'In combination with other commands, specify it is all platforms related',
+    type: 'boolean'
+  },
+  'log-type': {
+    demand: false,
+    nargs: 1,
+    choices: ['verbose', 'debug', 'warning'],
+    default: 'debug',
+    describe: 'Set level of messages displayed on console.',
     type: 'string'
   }
 }

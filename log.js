@@ -4,15 +4,15 @@ const colors = require('colors')
 module.exports = {
   log: function (message, description) {
     if (description) {
-      message = message.blue
-      description = description.gray
+      message = message.gray
+      description = description.green
     } else {
       message = message.gray
     }
-    console.log(`[Patata]`.yellow, message, description ? description : '')
+    console.log(`[Patata]`.blue, message, description ? description : '')
   },
   exit: function (message, exitCode) {
-    console.error(`[Patata]`.yellow, message.red)
+    console.error(`[Patata]`.red, message.red)
     process.exit(exitCode || 1)
   }
 }
