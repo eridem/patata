@@ -18,8 +18,10 @@
     "url": "git@github.com:eridem/patata-cli.git"
   },
   "dependencies": {
+    "chai": "^3.5.0",
     "colors": "^1.1.2",
     "glob": "^7.0.5",
+    "js-yaml": "^3.6.1",
     "latest": "^0.2.0",
     "patata-provider-hockeyapp": "^1.x.x",
     "rulet": "^1.0.2",

@@ -41,5 +41,11 @@ module.exports = {
     demand: false,
     describe: 'Save HockeyApp token to access to its apps',
     type: 'string'
+  },
+  'component-common': {
+    alias: 'cc',
+    demand: false,
+    describe: 'Create a new component',
+    type: 'string'
   }
 }

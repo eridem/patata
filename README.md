@@ -72,6 +72,10 @@ patata -s
 patata -s NAME
 
 patata --hockeyapp-set-token TOKEN
+
+patata --component
+patata --component-android NAME --byId BYID --byName BYN --byContentDescription BYCN
+patata --component-ios NAME  --byId BYID --byName BYN --byClassName BYCN
 ```
 
 ```
