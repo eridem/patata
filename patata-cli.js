@@ -16,7 +16,9 @@ log.log(`Welcome to Patata CLI ${packageJson.version}! More info: ${packageJson.
 
 // On error
 const onError = (ex) => {
-  if (typeof ex === 'string') {
+  if (!ex) {
+    log.exit('Unknown error')
+  } else if (typeof ex === 'string') {
     log.exit(ex)
   } else if (ex.message) {
     log.exit(ex.message)
