@@ -4,20 +4,45 @@ require('chai').should()
 const target = require('../../lib/utils/platform')
 
 describe('platform.js', function () {
-  describe('using .get()', function () {
+  describe('using .hasAny()', function () {
     it('should return true if one platform is indicated', function () {
       const targetModule = target({ argv: { ios: true } })
       targetModule.hasAny().should.equal(true)
     })
 
     it('should return true if several platforms are indicated', function () {
-      const targetModule = target({ argv: { ios: true, android: true, commont: true } })
+      const targetModule = target({ argv: { ios: true, android: true, common: true } })
       targetModule.hasAny().should.equal(true)
     })
 
     it('should return false if no platform is indicated', function () {
       const targetModule = target({ argv: { } })
       targetModule.hasAny().should.equal(false)
+    })
+  })
+
+  describe('using .hasOne()', function () {
+    it('should return true if one platform is indicated', function () {
+      let targetModule = target({ argv: { ios: true } })
+      targetModule.hasOne().should.equal(true)
+      targetModule = target({ argv: { android: true } })
+      targetModule.hasOne().should.equal(true)
+      targetModule = target({ argv: { common: true } })
+      targetModule.hasOne().should.equal(true)
+    })
+
+    it('should return false if several platforms are indicated', function () {
+      let targetModule = target({ argv: { ios: true, android: true, common: true } })
+      targetModule.hasOne().should.equal(false)
+      targetModule = target({ argv: { ios: true, android: true } })
+      targetModule.hasOne().should.equal(false)
+      targetModule = target({ argv: { android: true, common: true } })
+      targetModule.hasOne().should.equal(false)
+    })
+
+    it('should return false if no platform is indicated', function () {
+      const targetModule = target({ argv: { } })
+      targetModule.hasOne().should.equal(false)
     })
   })
 

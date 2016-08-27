@@ -17,20 +17,20 @@ The goals of *Patata* are:
 
 # Start with your QA project easily
 
-Install Patata-CLI
+## Install Patata-CLI
 
 ```bash
 npm --install -g patata-cli
 ```
 
-Create a new project:
+## Create a new project:
 ```bash
 patata init "My Project"
 cd my-project
 patata install
 ```
 
-Create UI components:
+## Create UI components:
 ```bash
 # Using the content-description in an element in the UI for Android:
 patata component "Login Button" "content-description" "login_button" --android
@@ -39,8 +39,7 @@ patata component "Login Button" "content-description" "login_button" --android
 patata component "Login Button" "id" "loginButton" --ios
 ```
 
-Create a new feature:
-
+## Create a new feature:
 ```bash
 patata feature "My Nice Feature"
 ```
@@ -102,23 +101,23 @@ Commands:
   install    Install all dependencies needed for the QA project
   feature    Create the needed files for a new feature
   component  Create a new component
-  run        Run test based on a file, uri or HockeyApp.
+  run        Run test based on a file, uri or HockeyApp
   setting    Get or set a global settings on the ".patata.yml"
 
 Options:
-  --ios, --pi      Used on "component". Add component only for iOS.           [boolean]                                                                                                        [boolean]
-  --android, --pa  Used on "component". Add component only for Android.       [boolean]                                                                                                           [boolean]
-  --common, --pc   Used on "component". Add component for all platforms.      [boolean]                                                                                                           [boolean]
+  --ios, --pi      Used on "component". Add component only for iOS.           [boolean]
+  --android, --pa  Used on "component". Add component only for Android.       [boolean]
+  --common, --pc   Used on "component". Add component for all platforms.      [boolean]
   --loglevel, -l   Set level of messages displayed on console.                [string] [choices: "verbose", "debug", "warning", "error"] [default: "debug"]
-  --help, -h       Show this help                                             [boolean]                                                                                                               [boolean]
+  --help, -h       Show this help                                             [boolean]
 
 Examples:
   patata init "My New QA Project"                                             Create a new project
-  patata install                                                              Install all dependencies needed for QA project.
-  patata feature "My Nice Feature"                                            Scaffolding: create the structure needed for a new feature
+  patata install                                                              Install all dependencies needed for QA project
   patata component "Login Button" "content-description" "login_button" --ios  Create a new component for iOS
-  patata run ./myapp.apk --tags "@ci"                                         Run test on Android with a APK file and tags.
+  patata feature "My Nice Feature"                                            Scaffolding: create the structure needed for a new feature
   patata setting HockeyApp.Token "123456"                                     Set the HockeyApp token key to fetch apps
+  patata run ./myapp.apk --tags "@ci"                                         Run test on Android with a APK file and tags
 
 ```
 
