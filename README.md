@@ -15,7 +15,7 @@ The goals of *Patata* are:
 - Common language for any platform.
 - Easier to understand and avoiding "*code*" as much as it is possible to automate.
 
-# Start with your QA project easilyW
+# Start with your QA project easily
 
 Install Patata-CLI
 
