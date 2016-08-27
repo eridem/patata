@@ -124,27 +124,29 @@ Examples:
 
 # File system structure
 
+```
 + components
-  + ui.ios.yml
-  + ui.ios.js
-  + ui.android.yml
-  + ui.android.js
-  + ui.common.yml
-  + ui.common.js
+  - ui.ios.yml
+  - ui.ios.js
+  - ui.android.yml
+  - ui.android.js
+  - ui.common.yml
+  - ui.common.js
 + config
-  + config.yml
+  - config.yml
 + features
   + feature-a
-    + feature-a.spec.feature
-    + feature-a.ios.js
-    + feature-a.android.js
-    + feature-a.common.js
+    - feature-a.spec.feature
+    - feature-a.ios.js
+    - feature-a.android.js
+    - feature-a.common.js
   + feature-b
-    + feature-b.spec.feature
-    + feature-b.ios.js
-    + feature-b.android.js
-    + feature-b.common.js
-+ .patata.yml
+    - feature-b.spec.feature
+    - feature-b.ios.js
+    - feature-b.android.js
+    - feature-b.common.js
+- .patata.yml
+```
 
 [travis-url]: https://travis-ci.org/eridem/patata-cli
 [travis-image]: https://img.shields.io/travis/eridem/patata-cli/master.svg
