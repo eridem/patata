@@ -7,6 +7,11 @@
   "contributors": [],
   "license": "MIT",
   "homepage": "http://patata.io",
+  "scripts": {
+    "pretest": "standard",
+    "test": "nyc --cache mocha --timeout=8000 --check-leaks test/**/*.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
   "bin": {
     "patata": "bin/index.js"
   },
@@ -19,10 +24,10 @@
   },
   "dependencies": {
     "chai": "^3.5.0",
+    "cli-spinners": "^0.2.0",
     "colors": "^1.1.2",
     "glob": "^7.0.5",
     "js-yaml": "^3.6.1",
-    "latest": "^0.2.0",
     "patata-provider-hockeyapp": "^1.x.x",
     "rulet": "^1.0.2",
     "shelljs": "^0.7.3",
@@ -30,8 +35,11 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.12",
     "gulp": "^3.9.1",
     "gulp-mocha": "^3.0.1",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "nyc": "^8.1.0",
+    "standard": "^8.0.0"
   }
 }

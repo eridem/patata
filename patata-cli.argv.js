@@ -1,76 +1,46 @@
 'use strict'
 
 module.exports = {
-  'init': {
-    demand: false,
-    nargs: 0,
-    describe: 'Create new patata project.',
-    type: 'string'
-  },
-  'install': {
-    alias: 'i',
-    demand: false,
-    nargs: 0,
-    describe: 'Install dependencies on an existing project.',
-    type: 'boolean'
-  },
-  'feature': {
-    alias: 'f',
-    demand: false,
-    nargs: 1,
-    describe: 'Create a feature file structure and example.',
-    type: 'string'
-  },
-  'component': {
-    alias: 'c',
-    demand: false,
-    nargs: 1,
-    describe: 'Create a new component.',
-    type: 'string'
-  },
-  'run': {
-    alias: 'r',
-    demand: false,
-    nargs: 1,
-    describe: 'Run test based on a file, uri or HockeyApp.',
-    type: 'string'
-  },
-  '-set-setting': {
-    alias: 's',
-    demand: false,
-    nargs: 2,
-    describe: 'Set global settings on the ".patata.yml"',
-    type: 'string'
-  },
   'by': {
+    alias: 'b',
     demand: false,
     nargs: 2,
     type: 'string'
   },
   'ios': {
+    alias: 'pi',
     demand: false,
     nargs: 0,
-    describe: 'In combination with other commands, specify it is only iOS related',
+    describe: 'Used on "component". Add component only for iOS.',
     type: 'boolean'
   },
   'android': {
+    alias: 'pa',
     demand: false,
     nargs: 0,
-    describe: 'In combination with other commands, specify it is only Android related',
+    describe: 'Used on "component". Add component only for Android.',
     type: 'boolean'
   },
   'common': {
+    alias: 'pc',
     demand: false,
     nargs: 0,
-    describe: 'In combination with other commands, specify it is all platforms related',
+    describe: 'Used on "component". Add component for all platforms.',
     type: 'boolean'
   },
-  'log-type': {
+  'loglevel': {
+    alias: 'l',
     demand: false,
     nargs: 1,
-    choices: ['verbose', 'debug', 'warning'],
+    choices: ['verbose', 'debug', 'warning', 'error'],
     default: 'debug',
     describe: 'Set level of messages displayed on console.',
     type: 'string'
+  },
+  'help': {
+    alias: 'h',
+    demand: false,
+    describe: 'Show this help',
+    type: 'boolean'
   }
 }

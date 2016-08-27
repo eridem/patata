@@ -1,8 +1,10 @@
 language: node_js
 node_js:
 - '6'
+after_success: npm run coverage
 before_script:
 - npm install -g gulp
+after_success: npm run coverage
 script: gulp
 install:
 - npm install
