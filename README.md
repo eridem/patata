@@ -3,19 +3,19 @@
 [![NPM version][npm-image]][npm-url]
 [![js-standard-style][standard-image]][standard-url]
 
-***Patata*** is a project to help you to automate native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) as main technologies behind.
+***Patata*** is a project to help you to automate UI testing of native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) to make the process as approachable as possible.
 
 The goals of *Patata* are:
 
-- Be able to set up your automation project within minutes
+- Be able to set up your automation project in minutes
 - Create a *standard* way to do things.
    - It is not possible to change the way it is structure. This avoid multiple discussions with you and your team.
    - Learning process is simple and quick. There are limited ways to do things.
    - It provides a scaffolding tool to create a detect problems before running tests.
 - Common language for any platform.
-- Easier to understand and avoiding "*code*" as much as it is possible to automate.
+- To be simple to understand and avoid the need for "*code*" as much as possible.
 
-# Start with your QA project easily
+# Start your QA project
 
 ## Install Patata-CLI
 
@@ -155,3 +155,5 @@ Examples:
 [npm-image]: https://img.shields.io/npm/v/patata-cli.svg
 [coveralls-url]: https://coveralls.io/github/eridem/patata-cli
 [coveralls-image]: https://img.shields.io/coveralls/eridem/patata-cli.svg
+[patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
+[patata-url]: https://github.com/eridem/patata
