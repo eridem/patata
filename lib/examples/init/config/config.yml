@@ -1,0 +1,19 @@
+# First level correspond to the tags
+# Second level are the configurations
+# Merge from top to bottom. Bottom has more priority than top
+
+# Use "_always" special section to get those configurations always (unless override)
+_always:
+    invalidCrentials:
+        username: banana@ra.ma
+        password: apples
+
+android:
+    
+ios:
+
+prod:
+    validCredentials:
+        username: myuser@example.com
+        password: passpass
+

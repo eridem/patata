@@ -28,13 +28,11 @@ module.exports = {
     describe: 'Used on "component". Add component for all platforms',
     type: 'boolean'
   },
-  'loglevel': {
-    alias: 'l',
+  'on-done': {
+    alias: 'd',
     demand: false,
     nargs: 1,
-    choices: ['verbose', 'debug', 'warning', 'error'],
-    default: 'debug',
-    describe: 'Set level of messages displayed on console',
+    describe: 'A path to a JavaScript file to execute when the test finish.',
     type: 'string'
   },
   'help': {

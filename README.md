@@ -3,7 +3,7 @@
 [![NPM version][npm-image]][npm-url]
 [![js-standard-style][standard-image]][standard-url]
 
-***Patata*** is a project to help you to automatize native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) as main technologies behind.
+***Patata*** is a project to help you to automate native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) as main technologies behind.
 
 The goals of *Patata* are:
 
@@ -105,11 +105,11 @@ Commands:
   setting    Get or set a global settings on the ".patata.yml"
 
 Options:
-  --ios, --pi      Used on "component". Add component only for iOS.           [boolean]
-  --android, --pa  Used on "component". Add component only for Android.       [boolean]
-  --common, --pc   Used on "component". Add component for all platforms.      [boolean]
-  --loglevel, -l   Set level of messages displayed on console.                [string] [choices: "verbose", "debug", "warning", "error"] [default: "debug"]
-  --help, -h       Show this help                                             [boolean]
+  --ios, --pi      Used on "component". Add component only for iOS.              [boolean]
+  --android, --pa  Used on "component". Add component only for Android.          [boolean]
+  --common, --pc   Used on "component". Add component for all platforms.         [boolean]
+  --on-done, -d    A path to a JavaScript file to execute when the test finish.  [string]
+  --help, -h       Show this help                                                [boolean]
 
 Examples:
   patata init "My New QA Project"                                             Create a new project
