@@ -1,7 +1,7 @@
 {
   "name": "patata-cli",
-  "version": "4.0.0",
-  "description": "Client for Patata",
+  "version": "4.0.1",
+  "description": "Native testing made easy with CLI",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
   "contributors": [],
@@ -16,7 +16,15 @@
     "patata": "index.js"
   },
   "keywords": [
-    "patata"
+    "patata",
+    "appium",
+    "cucumberjs",
+    "testing",
+    "bdd",
+    "android",
+    "ios",
+    "automation",
+    "cli" 
   ],
   "repository": {
     "type": "git",
