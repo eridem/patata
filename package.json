@@ -1,6 +1,6 @@
 {
   "name": "patata-cli",
-  "version": "4.0.2",
+  "version": "4.1.0",
   "description": "Native testing made easy with CLI",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",

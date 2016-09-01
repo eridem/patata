@@ -69,6 +69,15 @@ patata run "./bin/myApp.apk" --tags "@ci,@mybrand"
 patata run "./bin/myApp.ipa"
 ```
 
+## Tags
+
+Use ```--tags <EXPRESSION>``` to run specific features or scenarios.
+
+- ```--tags @dev```: tagged with @dev
+- ```--tags ~@dev```: NOT tagged with @dev
+- ```--tags @foo,@bar```: tagged with @foo OR bar
+- ```--tags @foo --tags @bar```: tagged with @foo AND bar
+
 # Using HockeyApp
 
 Save the HockeyApp token key using the terminal:
@@ -118,7 +127,6 @@ Examples:
   patata feature "My Nice Feature"                                            Scaffolding: create the structure needed for a new feature
   patata setting HockeyApp.Token "123456"                                     Set the HockeyApp token key to fetch apps
   patata run ./myapp.apk --tags "@ci"                                         Run test on Android with a APK file and tags
-
 ```
 
 # File system structure
@@ -157,3 +165,13 @@ Examples:
 [coveralls-image]: https://img.shields.io/coveralls/eridem/patata-cli.svg
 [patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
 [patata-url]: https://github.com/eridem/patata
+
+# Copyrights
+
+Patata is based on the great work of other Open Source projects. 
+
+To learn more about the other projects, their licenses and authors, you can use this website:
+
+[https://www.npmjs.com](https://www.npmjs.com/)
+
+Searching for each dependency listed on the file ```package.json``` under the section ```dependencies``` and ```devDependencies```.
