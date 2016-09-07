@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 /* global test */
 'use strict'
 
@@ -46,8 +45,10 @@ if (!opts.command) {
   }
   const packageJson = require(path.join(__dirname, './package.json'))
 
-  opts.log = require(path.join(__dirname, './lib/utils/log'))
-  opts.scriptPath = path.join(__dirname, 'lib', opts.command) + '.js'
+  opts.colors = require('colors')
+  opts.shell = require('shelljs')
+  opts.log = require(path.join(__dirname, './lib/utils/log'))(opts)
+  opts.scriptPath = path.join(__dirname, 'lib', opts.command + '.js')
   opts.examplePath = path.join(__dirname, './lib/examples')
   opts.help = require(path.join(__dirname, 'lib/utils/help'))
   opts.validation = require(path.join(__dirname, 'lib/utils/validation'))
