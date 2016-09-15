@@ -59,6 +59,76 @@ this.Given('.......', function() {
 //...
 ```
 
+# Configurations for your tests
+
+You can create set of configuration values for your tests.
+
+## Defining configuration values
+
+All configurations are inside the file ```/config/config.yml```. E.g:
+
+```yml
+common:
+  invalidCredentials:
+    username: banana
+    password: 654321
+  validCredentials:
+    username: potato
+    password: 456123
+test-env:
+  validCredentials:
+    username: patata
+    password: 123456
+```
+
+The configuration is based in two levels:
+
+- The first level define the tags that will match. Use lowercase and dashes. E.g. ```common```, ```test-env```
+- The second level define the values. Use camelCase. E.g. ```invalidCredentials```, ```validCredentials```
+
+Configurations will match:
+
+- the ```--tags``` options using all tags
+- or ```--config-tags``` if used
+
+E.g.
+
+```bash
+patata run myapp.apk --tags "@test-env"                                    # Will use tags inside --tags
+patata run myapp.apk --tags "@test-env" --config-tags "@test-env,@common"  # Will use tags inside --config-tags
+```
+
+The configurations will merge the settings from the top to the bottom. 
+
+E.g. if we pass ```--config-tags "@common,@test-env"``` the result will be:
+
+```yml
+invalidCredentials:
+  username: banana
+  password: 654321
+validCredentials:
+  username: patata
+  password: 123456
+```
+
+## Using configuration in your tests
+
+At any moment in your application, you can access to your configurations writing ```this.config.myConfigurationKey```. E.g.
+
+```javascript
+console.log(this.config.invalidCredentials.username) // Will print "banana"
+```
+
+As well, you can use an string to access to the configurations. This could be useful when passing arguments from the feature files:
+
+```javascript
+let mySetting = 'invalidCredentials'
+console.log(this.config[mySetting].username) // Will print "banana"
+
+mySetting = 'validCredentials'
+console.log(this.config[mySetting].username) // Will print "patata"
+```
+
 # Run tests when you are ready
 
 Run your tests on iOS or Android:
@@ -114,19 +184,22 @@ Commands:
   setting    Get or set a global settings on the ".patata.yml"
 
 Options:
-  --ios, --pi      Used on "component". Add component only for iOS.              [boolean]
-  --android, --pa  Used on "component". Add component only for Android.          [boolean]
-  --common, --pc   Used on "component". Add component for all platforms.         [boolean]
-  --on-done, -d    A path to a JavaScript file to execute when the test finish.  [string]
-  --help, -h       Show this help                                                [boolean]
-
+  --ios, --pi          Used on "component". Add component only for iOS.                     [boolean]
+  --android, --pa      Used on "component". Add component only for Android.                 [boolean]
+  --common, --pc       Used on "component". Add component for all platforms.                [boolean]
+  --on-done, -d        A path to a JavaScript file to execute when the test finish.         [string]
+  --tags, -t           Used on "run".
+                       Run scenarios with those tags.
+                       Read "config.yml" using those tags (skip if --config-tags is used).  [string]
+  --config-tags, --ct  Used on "run".
+                       Read "config.yml" using those tags.                                  [string]
 Examples:
   patata init "My New QA Project"                                             Create a new project
   patata install                                                              Install all dependencies needed for QA project
   patata component "Login Button" "content-description" "login_button" --ios  Create a new component for iOS
   patata feature "My Nice Feature"                                            Scaffolding: create the structure needed for a new feature
   patata setting HockeyApp.Token "123456"                                     Set the HockeyApp token key to fetch apps
-  patata run ./myapp.apk --tags "@ci"                                         Run test on Android with a APK file and tags
+  patata run ./myapp.apk --tags "@ci" --config-tags "@beta"                   Run test on Android with a APK file and tags
 ```
 
 # File system structure

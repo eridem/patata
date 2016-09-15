@@ -24,7 +24,7 @@ const yargs = require('yargs')
   .example('$0 component "Login Button" "content-description" "login_button" --ios', 'Create a new component for iOS')
   .example('$0 feature "My Nice Feature"', 'Scaffolding: create the structure needed for a new feature')
   .example('$0 setting HockeyApp.Token "123456"', 'Set the HockeyApp token key to fetch apps')
-  .example('$0 run ./myapp.apk --tags "@ci"', 'Run test on Android with a APK file and tags')
+  .example('$0 run ./myapp.apk --tags "@ci" --config-tags "@beta"', 'Run test on Android with a APK file and tags')
   .example('$0 run http://example.com/bin/myapp.ipa --on-done "./myTriggers/ondone.js"', 'Run test on Android with a APK file and tags')
 
 opts.argv = yargs.argv
@@ -47,6 +47,7 @@ if (!opts.command) {
 
   opts.colors = require('colors')
   opts.shell = require('shelljs')
+  opts.console = console
   opts.log = require(path.join(__dirname, './lib/utils/log'))(opts)
   opts.scriptPath = path.join(__dirname, 'lib', opts.command + '.js')
   opts.examplePath = path.join(__dirname, './lib/examples')
