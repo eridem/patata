@@ -33,12 +33,12 @@ module.exports = {
     alias: 't',
     demand: false,
     describe: 'Used on "run".\nRun scenarios with those tags.\nRead "config.yml" using those tags (skip if --config-tags is used).',
-    type: "string"
+    type: 'string'
   },
   'config-tags': {
     alias: 'ct',
     demand: false,
     describe: 'Used on "run".\nRead "config.yml" using those tags.',
-    type: "string"
+    type: 'string'
   }
 }
