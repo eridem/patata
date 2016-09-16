@@ -41,15 +41,12 @@ describe('log.js', function () {
 
     it('should return print a message', () => {
       _targetModule.log('Message')
-      _lastLogArgs[0].should.equal('[Patata]')
-      _lastLogArgs[1].should.equal('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
     })
 
     it('should return print a message and description', () => {
       _targetModule.log('Message', 'Description')
-      _lastLogArgs[0].should.equal('[Patata]')
-      _lastLogArgs[1].should.equal('Message')
-      _lastLogArgs[2].should.equal('Description')
+      _lastLogArgs[0].should.equal('[Patata] Message Description')
     })
   })
 

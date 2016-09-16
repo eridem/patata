@@ -8,7 +8,7 @@
   "license": "MIT",
   "homepage": "http://patata.io",
   "scripts": {
-    "pretest": "standard",
+    "pretest": "standard --fix",
     "test": "nyc --cache mocha --timeout=8000 --check-leaks test/**/*.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
