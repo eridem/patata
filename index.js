@@ -45,7 +45,7 @@ if (!opts.command) {
   }
   const packageJson = require(path.join(__dirname, './package.json'))
 
-  opts.colors = require('colors')
+  opts.colors = require('chalk')
   opts.shell = require('shelljs')
   opts.console = console
   opts.log = require(path.join(__dirname, './lib/utils/log'))(opts)
