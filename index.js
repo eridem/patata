@@ -19,6 +19,10 @@ const querystring = require('querystring')
 const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
 
+// Show CLI info
+const packageJson = require(__dirname + '/package.json')
+console.log(colors.blue(`[Patata]`), colors.yellow(`Version ${packageJson.version}. More info: ${packageJson.homepage}`), '\n')
+
 // Switch CWD if specified from options
 const cwd = resolve(yargs.argv.cwd || process.cwd())
 process.chdir(cwd)
@@ -45,4 +49,5 @@ yargs
   .help()
   .options({ cwd: { desc: 'Change the current working directory', type: 'string' } })
   .demand(1)
+  .version(packageJson.version)
   .argv
