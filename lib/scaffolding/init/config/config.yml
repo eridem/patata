@@ -1,0 +1,23 @@
+# First level correspond to the tags
+# Second level are the configurations
+# Merge from top to bottom. Bottom has more priority than top
+
+# Use --tags to match with the tags on the configurations
+# Or use --config-tags to do the same without use the main tags
+
+# E.g. patata run myfile.apk --tags "@myproduct" --config-tags "@common,@prod" 
+
+common:
+    invalidCrentials:
+        username: banana@ra.ma
+        password: apples
+
+android:
+    
+ios:
+
+prod:
+    validCredentials:
+        username: myuser@example.com
+        password: passpass
+

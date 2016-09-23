@@ -1,6 +1,6 @@
 {
   "name": "patata-cli",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "Native testing made easy with CLI",
   "main": "index.js",
   "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
@@ -32,12 +32,11 @@
   },
   "dependencies": {
     "asciify": "^1.3.5",
-    "chai": "^3.5.0",
     "chalk": "^1.1.3",
-    "cli-spinners": "^0.2.0",
     "glob": "^7.0.5",
     "hockeyapp-api-wrapper": "^0.x.x",
     "js-yaml": "^3.6.1",
+    "require-dir": "^0.3.0",
     "shelljs": "^0.7.3",
     "yargs": "^4.8.1"
   },
