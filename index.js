@@ -20,7 +20,7 @@ const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
 
 // Show CLI info
-const packageJson = require(__dirname + '/package.json')
+const packageJson = require(join(__dirname, '/package.json'))
 console.log(colors.blue(`[Patata]`), colors.yellow(`Version ${packageJson.version}. More info: ${packageJson.homepage}`), '\n')
 
 // Switch CWD if specified from options

@@ -1,7 +1,8 @@
 /* global describe, it */
 
+const { join } = require('path')
 require('chai').should()
-const target = require('../../lib/utils/platform')
+const target = require(join(__dirname, '../../lib/modules/platform'))
 
 describe('platform.js', function () {
   describe('using .hasAny()', function () {
