@@ -20,8 +20,10 @@ const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
 
 // Show CLI info
-const packageJson = require(join(__dirname, '/package.json'))
-console.log(colors.blue(`[Patata]`), colors.yellow(`Version ${packageJson.version}. More info: ${packageJson.homepage}`), '\n')
+if (yargs.argv._.length) {
+  const packageJson = require(join(__dirname, '/package.json'))
+  console.log(colors.blue(`[Patata]`), colors.yellow(`Version ${packageJson.version}. More info: ${packageJson.homepage}`))
+}
 
 // Switch CWD if specified from options
 const cwd = resolve(yargs.argv.cwd || process.cwd())
@@ -46,8 +48,11 @@ terminalWidth = terminalWidth > 100 ? 100 : terminalWidth
 commands.forEach(cmd => yargs.command(cmd.command, cmd.desc, cmd.builder, cmd.handler))
 yargs
   .wrap(terminalWidth)
-  .help()
   .options({ cwd: { desc: 'Change the current working directory', type: 'string' } })
+  .options({ verbose: { desc: 'Show all debug messages', type: 'boolean' } })
   .demand(1)
-  .version(packageJson.version)
+  .version()
+  .alias('version', 'v')
+  .help()
+  .alias('help', 'h')
   .argv
