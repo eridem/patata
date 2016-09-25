@@ -18,6 +18,7 @@ const glob = require('glob')
 const querystring = require('querystring')
 const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
+const cucumberHtmlReporter = require('cucumber-html-reporter')
 
 // Show CLI info
 if (yargs.argv._.length) {
@@ -30,7 +31,7 @@ const cwd = resolve(yargs.argv.cwd || process.cwd())
 process.chdir(cwd)
 
 // External dependencies to pass to the commands
-let dep = { yargs, join, resolve, console, colors, shell, process, __rootdirname, extend, url, asciify, http, net, fs, glob, querystring, HockeyApp, yaml }
+let dep = { yargs, join, resolve, console, colors, shell, process, __rootdirname, extend, url, asciify, http, net, fs, glob, querystring, HockeyApp, yaml, cucumberHtmlReporter }
 
 // Internal dependencies
 const inDepFns = requireDir(join(__rootdirname, 'lib', 'modules'), { camelcase: true })
