@@ -20,7 +20,7 @@ The goals of *Patata* are:
 ## Install Patata-CLI
 
 ```bash
-npm --install -g patata-cli
+npm install -g patata-cli
 ```
 
 ## Create a new project:
