@@ -2,11 +2,22 @@
   "name": "example",
   "version": "1.0.0",
   "description": "BDD project for Native Mobile using Patata",
-  "main": "patatafile.js",
+  "main": ".patata.yml",
   "scripts": {
-    "test": "patata"
+    "preinstall": "npm install -g standard",
+    "test": "standard features/**/*.js components/**/*.js"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"  
+  "license": "SEE LICENSE IN LICENSE.md",
+  "private": true,
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm test",
+      "pre-push": "npm test"
+    }
+  },
+  "devDependencies": {
+    "ghooks": "^1.3.2"
+  }
 }
