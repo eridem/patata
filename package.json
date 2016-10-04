@@ -36,11 +36,6 @@
       "pre-push": "npm test"
     }
   },
-  "standard": {
-    "ignore": [
-      "lib/sdk/patata.js"
-    ]
-  },
   "dependencies": {
     "appium": "^1.5.3",
     "asciify": "^1.3.5",
