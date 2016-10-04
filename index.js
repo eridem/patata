@@ -50,7 +50,13 @@ let terminalWidth = require('yargs').terminalWidth()
 terminalWidth = terminalWidth > 100 ? 100 : terminalWidth
 
 // Init CLI commands and options
-commands.forEach(cmd => yargs.command(cmd.command, cmd.desc, cmd.builder, cmd.handler))
+commands.forEach(cmd => yargs.command(cmd.command, cmd.desc, cmd.builder, (argv) => {
+  try {
+    cmd.handler(argv)
+  } catch (ex) {
+    dep.log.exit(ex)
+  }
+}))
 yargs
   .wrap(terminalWidth)
   .options({ cwd: { desc: 'Change the current working directory', type: 'string' } })
