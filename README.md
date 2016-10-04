@@ -5,69 +5,162 @@
 
 ***Patata*** is a project to help you to automate UI testing of native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) to make the process as approachable as possible.
 
-The goals of *Patata* are:
-
-- Be able to set up your automation project in minutes
-- Create a *standard* way to do things.
-   - It is not possible to change the way it is structure. This avoid multiple discussions with you and your team.
-   - Learning process is simple and quick. There are limited ways to do things.
-   - It provides a scaffolding tool to create a detect problems before running tests.
-- Common language for any platform.
-- To be simple to understand and avoid the need for "*code*" as much as possible.
-
 # Start your QA project
 
 ## Install Patata-CLI
 
 ```bash
 npm install -g patata-cli
+# This may take a while due it install Cucumber and Appium
 ```
 
 ## Create a new project:
 ```bash
 patata init "My Project"
 cd my-project
+
 patata install
 ```
 
-## Create UI components:
-```bash
-# Using the content-description in an element in the UI for Android:
-patata component "Login Button" "content-description" "login_button" --android
+# Main concepts
 
-# Using the id in an element in the UI for iOS:
-patata component "Login Button" "id" "loginButton" --ios
+***Patata*** will create some folders for you, organizing your testing suites.
+
+- ```components```: elements extracted from the user interface.
+- ```features```: where the feature definitions and the implementations are.
+- ```hooks```: *before* and *after* actions for your tests.
+- ```config```: configurations and values you want to save for your tests.
+- ```reports```: where the results of the tests are saved.
+- ```patata.yml```: file that contains some settings for the framework.
+
+# Platform files
+
+All files, excepting ```.feature``` and ```config.yml```, contain the extension 
+
+- ```*.ios.*```
+- ```*.android.*```
+- ```*.common.*```
+
+The framework will load ```common``` files and later it will load the platform files depending of the platform currently running.
+
+# Components
+
+Components are the visual parts we can extract from the application.
+
+## Yaml components
+
+Using the ```ui.*.yml``` files, we can add components using easy tags that match with our views on the interface. It is divided in three parts: name of the component, fetch method and fetch value. For instance:
+
+```yaml
+# COMPONENT_NAME:
+#    FETCH_METHOD: FETCH_VALUE
+
+MY_BUTTON:
+  content-description: my_content_description
 ```
 
-## Create a new feature:
-```bash
-patata feature "My Nice Feature"
-```
+- ***Component name***: the name we will use to reference this component in the implementation files. They need to be in uppercase, spaced by underscore.
+- ***Fetch method***: way to extract the component. It is platform specific:
+  - iOS: ```id```, ```name```, ```xpath```, ```class-name```
+  - Android: ```id```, ```content-description```, ```xpath```
+- ***Fetch value***: value that corresponde to the fetch method.
 
-Fill the ```my-nice-feature.feature``` file using the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
+## Advance components
 
-And fill the features on the JavaScript files doing references to the previous components:
+The Yaml file could be useful to extract most of the components, but we may want to go advance and create bigger implementations to extract a component. We can create a file called:
+
+- ```components/ui.androd.js```
+- ```components/ui.common.js```
+- ```components/ui.ios.js```
+
+The content is very similar to YAML components, but those are based on ```exports``` and ```functions```. Example:
 
 ```javascript
-//...
+// components/ui.android.js
+'use strict'
 
-this.Given('.......', function() {
-  return this.emu
-      .LOGIN_BUTTON.tap()
-})
-
-//...
+exports.MY_BUTTON: function() {
+  return this.elementByAccessibilityId('my_content_description').should.eventually.exists
+}
 ```
 
-# Configurations for your tests
+All exports need to return a promise. If you need to connect to the ```driver```, use ```this``` and chain your calls.
 
-You can create set of configuration values for your tests.
+# Features
+
+All features are inside the ```features``` folder. We can run the command:
+
+```bash
+patata feature "My nice feature"
+```
+
+To obtain an example of a feature to start working on it.
+
+Features will contain four files:
+
+- ```my-nice-feature.feature```: Gherkin definition of the feature, based on the [Gherkin syntax](https://github.com/cucumber/cucumber/wiki/Gherkin)
+- ```my-nice-feature.*.js```: implementation of the feature, based on the platform and the [Cucumber Step definitions](https://github.com/cucumber/cucumber-js/blob/master/docs/support_files/step_definitions.md)
+
+***Patata*** solves all the hard work initializing Appium, WebDriver and Cucumber.
+
+In order to connect to the ```web driver```, we use:
+
+```javascript
+return this.emu
+```
+
+In order to access to our ```components```, we call them directly chained from the ```this.emu``` object:
+
+```javascript
+this.Given('.......', function() {
+  return this.emu      
+      .TOOLBAR_USER_BUTTON.tap()
+      .LOGIN_BUTTON.tap()
+})
+```
+
+# Hooks
+
+We can find three files to define ***hooks***, which are *After* and *Before* actions.
+
+```
+hooks/hooks.*.js
+```
+
+The first hooks to load will be ```common```. Then, the platform specific.
+
+Hooks works as ```features```. We can use ```this.emu``` to access to the driver and we can access to the components. More info on the ***features section***.
+
+Example:
+
+```javascript
+var hooks = function () {
+  this.Before(function (scenario) {
+    return this.emu
+  })
+
+  this.After(function (scenario) {
+    return this.emu
+  })
+}
+
+module.exports = hooks
+```
+
+# Config
 
 ## Defining configuration values
 
-All configurations are inside the file ```/config/config.yml```. E.g:
+All configurations are inside the file ```/config/config.yml```.
+
+The configuration is based in two levels:
+
+- The first level define the tags that will match. Use lowercase and dashes. E.g. ```common```, ```test-env```
+- The second level define the values. Use camelCase. E.g. ```invalidCredentials```, ```validCredentials```
 
 ```yml
+# Example: 
+
 common:
   invalidCredentials:
     username: banana
@@ -81,26 +174,9 @@ test-env:
     password: 123456
 ```
 
-The configuration is based in two levels:
+When we execute the tests, we will pass the first level tags. The settings will be merged from top to bottom if it match the tags defined.
 
-- The first level define the tags that will match. Use lowercase and dashes. E.g. ```common```, ```test-env```
-- The second level define the values. Use camelCase. E.g. ```invalidCredentials```, ```validCredentials```
-
-Configurations will match:
-
-- the ```--tags``` options using all tags
-- or ```--config-tags``` if used
-
-E.g.
-
-```bash
-patata run myapp.apk --tags "@test-env"                                    # Will use tags inside --tags
-patata run myapp.apk --tags "@test-env" --config-tags "@test-env,@common"  # Will use tags inside --config-tags
-```
-
-The configurations will merge the settings from the top to the bottom. 
-
-E.g. if we pass ```--config-tags "@common,@test-env"``` the result will be:
+For instance, if we fetch by ```@common``` and ```@test-env```, the result will be:
 
 ```yml
 invalidCredentials:
@@ -113,23 +189,31 @@ validCredentials:
 
 ## Using configuration in your tests
 
-At any moment in your application, you can access to your configurations writing ```this.config.myConfigurationKey```. E.g.
+We can access to the configuration object inside ```hooks```, ```compontents``` and ```features``` at any time using ```this.config.*```. E.g.
 
 ```javascript
 console.log(this.config.invalidCredentials.username) // Will print "banana"
+console.log(this.config['invalidCredentials'].username) // Will print "banana"
+console.log(this.config['validCredentials'].username) // Will print "patata"
 ```
 
-As well, you can use an string to access to the configurations. This could be useful when passing arguments from the feature files:
+## Loading configurations
 
-```javascript
-let mySetting = 'invalidCredentials'
-console.log(this.config[mySetting].username) // Will print "banana"
+On running our tests, we can define two different ways to load the configurations based on the *first level* name.
 
-mySetting = 'validCredentials'
-console.log(this.config[mySetting].username) // Will print "patata"
+- Using ```--tags```. E.g.
+
+```bash
+patata run <...> --tags "@test-env"    
 ```
 
-# Run tests when you are ready
+- Using ```--config-tags``` if we do not want to use ```---tags```. This will discard the ```--tags``` values. E.g. 
+
+```bash
+patata run <...> --config-tags "@test-env,@common"
+```
+
+# Run tests
 
 Run your tests on iOS or Android:
 
@@ -148,13 +232,41 @@ Use ```--tags <EXPRESSION>``` to run specific features or scenarios.
 - ```--tags @foo,@bar```: tagged with @foo OR bar
 - ```--tags @foo --tags @bar```: tagged with @foo AND bar
 
-# Using HockeyApp
+# Creating CLI profiles
 
-Save the HockeyApp token key using the terminal:
+If we want to execute the same kind of commands on ***patata***, we can save the command options in a profile that we can reuse everytime and share with our team.
+
+- Open the file ```patata.yml```
+- Add the following example:
+
+```yaml
+Profiles:
+  MyTest: patata run "./bin/myApp.apk" --tags @mybrand
+```
+
+When you want to run that specific profile, you can call to:
 
 ```bash
-patata setting "HockeyApp.Token" "aaaabbbbccccdddd0000111122223333"
+patata profile MyTest
 ```
+
+The profiles are not attached to the ```patata``` command, you can add any one you may need to automate your proccess.
+
+# Using HockeyApp
+
+We can connect our tests to HockeyApp to download the files from there.
+
+- Open the file ```patata.yml```
+- Add the following example:
+
+```yaml
+HockeyApp:
+  Token: aaaabbbbccccdddd0000111122223333
+```
+
+Replace the value ```aaaabbbbccccdddd0000111122223333``` for your HockeyApp token. More info: [https://rink.hockeyapp.net/manage/auth_tokens](https://rink.hockeyapp.net/manage/auth_tokens)
+
+## Running tests using HockeyApp
 
 Run *Patata* using the provider and the name of the app. It will take the latest version found:
 
@@ -170,63 +282,6 @@ patata run "hockeyapp://?app=My App&filterName=notes&filterValue=/.*My Note.*/gi
 
 Filters are based on the attribute names from the [HockeyApp API Versions](https://support.hockeyapp.net/kb/api/api-versions) documentation page.
 
-# Help from terminal
-
-```
-Usage: patata <command> [options]
-
-Commands:
-  init       Create a new project
-  install    Install all dependencies needed for the QA project
-  feature    Create the needed files for a new feature
-  component  Create a new component
-  run        Run test based on a file, uri or HockeyApp
-  setting    Get or set a global settings on the ".patata.yml"
-
-Options:
-  --ios, --pi          Used on "component". Add component only for iOS.                     [boolean]
-  --android, --pa      Used on "component". Add component only for Android.                 [boolean]
-  --common, --pc       Used on "component". Add component for all platforms.                [boolean]
-  --on-done, -d        A path to a JavaScript file to execute when the test finish.         [string]
-  --tags, -t           Used on "run".
-                       Run scenarios with those tags.
-                       Read "config.yml" using those tags (skip if --config-tags is used).  [string]
-  --config-tags, --ct  Used on "run".
-                       Read "config.yml" using those tags.                                  [string]
-Examples:
-  patata init "My New QA Project"                                             Create a new project
-  patata install                                                              Install all dependencies needed for QA project
-  patata component "Login Button" "content-description" "login_button" --ios  Create a new component for iOS
-  patata feature "My Nice Feature"                                            Scaffolding: create the structure needed for a new feature
-  patata setting HockeyApp.Token "123456"                                     Set the HockeyApp token key to fetch apps
-  patata run ./myapp.apk --tags "@ci" --config-tags "@beta"                   Run test on Android with a APK file and tags
-```
-
-# File system structure
-
-```
-+ components
-  - ui.ios.yml
-  - ui.ios.js
-  - ui.android.yml
-  - ui.android.js
-  - ui.common.yml
-  - ui.common.js
-+ config
-  - config.yml
-+ features
-  + feature-a
-    - feature-a.spec.feature
-    - feature-a.ios.js
-    - feature-a.android.js
-    - feature-a.common.js
-  + feature-b
-    - feature-b.spec.feature
-    - feature-b.ios.js
-    - feature-b.android.js
-    - feature-b.common.js
-- .patata.yml
-```
 
 [travis-url]: https://travis-ci.org/eridem/patata-cli
 [travis-image]: https://img.shields.io/travis/eridem/patata-cli/master.svg

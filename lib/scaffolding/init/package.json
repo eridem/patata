@@ -2,7 +2,7 @@
   "name": "example",
   "version": "1.0.0",
   "description": "BDD project for Native Mobile using Patata",
-  "main": ".patata.yml",
+  "main": "patata.yml",
   "scripts": {
     "preinstall": "npm install -g standard",
     "test": "standard features/**/*.js components/**/*.js"

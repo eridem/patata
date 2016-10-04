@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 'use strict'
 
+// Always colors for better debug
+process.argv.push('--color=always')
+
 // External dependencies
 const { join, resolve } = require('path')
 const __rootdirname = __dirname
