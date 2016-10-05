@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 'use strict'
 
+// Always colors for better debug
+process.argv.push('--color=always')
+
 // External dependencies
 const { join, resolve } = require('path')
 const __rootdirname = __dirname
@@ -19,6 +22,7 @@ const querystring = require('querystring')
 const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
 const cucumberHtmlReporter = require('cucumber-html-reporter')
+const gherkinLint = { run: function () { require('gherkin-lint') } }
 const Mustache = require('mustache')
 const changeCase = require('change-case')
 const latinize = require('latinize')
@@ -34,6 +38,7 @@ const cwd = resolve(yargs.argv.cwd || process.cwd())
 process.chdir(cwd)
 
 // External dependencies to pass to the commands
+let dep = { yargs, join, resolve, console, colors, shell, process, __rootdirname, extend, url, asciify, http, net, fs, glob, querystring, HockeyApp, yaml, cucumberHtmlReporter, gherkinLint }
 let dep = {
   yargs, join, resolve, console, colors, shell, process,
   __rootdirname, extend, url, asciify, http, net, fs, glob, querystring,

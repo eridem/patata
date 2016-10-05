@@ -58,12 +58,10 @@ describe('log.js', function () {
 
     it('should return print a message', () => {
       _targetModule.warn('Message')
-      _lastLogArgs[0].should.equal('[Patata]')
-      _lastLogArgs[1].should.equal('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
 
       _targetModule.warn(['Message'])
-      _lastLogArgs[0].should.equal('[Patata]')
-      _lastLogArgs[1].should.equal('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
     })
   })
 
