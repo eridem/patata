@@ -5,7 +5,7 @@
   "main": "patata.yml",
   "scripts": {
     "preinstall": "npm install -g standard",
-    "test": "standard features/**/*.js components/**/*.js"
+    "test": "patata lint && standard features/**/*.js components/**/*.js"
   },
   "keywords": [],
   "author": "",
