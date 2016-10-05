@@ -5,7 +5,7 @@ Feature: ${title}
   I want _I_WANT_
   So that _SO_I_
 
-  Scenario: <SCENARIO_NAME>
+  Scenario: _SCENARIO_NAME_
     Given _GIVEN_
     When _WHEN_
     Then _THEN_
