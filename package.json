@@ -55,7 +55,6 @@
     "hockeyapp-api-wrapper": "^0.x.x",
     "js-yaml": "^3.6.1",
     "latinize": "^0.3.0",
-    "mustache": "^2.2.1",
     "require-dir": "^0.3.0",
     "shelljs": "^0.7.3",
     "wd": "^0.4.0",
