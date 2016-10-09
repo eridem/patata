@@ -3,7 +3,7 @@ language: node_js
 os:
   - linux
 
-after_success: npm run coverage
+after_success: npm run coveralls
 
 node_js:
 - '6'

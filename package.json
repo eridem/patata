@@ -8,9 +8,12 @@
   "license": "MIT",
   "homepage": "http://patata.io",
   "scripts": {
-    "pretest": "standard --fix",
-    "test": "nyc --cache mocha --timeout=8000 --check-leaks test/**/*.js && nyc check-coverage --lines 18 --functions 19 --branches 15 test/**/*.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "pretest": "node ./node_modules/standard/bin/cmd.js --fix",
+    "test": "npm run test-coverage && npm run allowed-coverage",
+    "test-coverage": "node ./node_modules/nyc/bin/nyc.js --cache mocha --timeout=8000 --check-leaks test/**/*.js",
+    "allowed-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 21 --functions 21 --branches 18 test/**/*.js",
+    "ideal-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 100 --functions 100 --branches 100 test/**/*.js",
+    "coveralls": "node ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | coveralls"
   },
   "bin": {
     "patata": "index.js"
