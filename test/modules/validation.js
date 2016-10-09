@@ -1,10 +1,13 @@
 /* global before, describe, it */
 
 const { join } = require('path')
-require('chai').should()
-const target = require(join(__dirname, '../../lib/modules/validation'))
+const chai = require('chai')
+chai.should()
 
-describe('validation.js', function () {
+const file = 'validation.js'
+const target = require(join(__dirname, '../../lib/modules/', file))
+
+describe(file, function () {
   let targetModule
 
   before(function () {

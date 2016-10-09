@@ -1,10 +1,13 @@
 /* global describe, it */
 
 const { join } = require('path')
-require('chai').should()
-const target = require(join(__dirname, '../../lib/modules/platform'))
+const chai = require('chai')
+chai.should()
 
-describe('platform.js', function () {
+const file = 'platform.js'
+const target = require(join(__dirname, '../../lib/modules/', file))
+
+describe(file, function () {
   describe('using .hasAny()', function () {
     it('should return true if one platform is indicated', function () {
       const targetModule = target({ argv: { ios: true } })

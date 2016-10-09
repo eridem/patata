@@ -1,11 +1,14 @@
 /* global describe, it, before */
 
-require('chai').should()
 const { join } = require('path')
-const expect = require('chai').expect
-const target = require(join(__dirname, '../../lib/modules/log'))
+const chai = require('chai')
+chai.should()
+const expect = chai.expect
 
-describe('log.js', function () {
+const file = 'log.js'
+const target = require(join(__dirname, '../../lib/modules/', file))
+
+describe(file, function () {
   let _targetModule
   let _lastLogArgs
   let _wasExitCalled
