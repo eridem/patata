@@ -1,9 +1,17 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
+[![Coverity Scan Build Status][coverity-scan-image]][coverity-scan-url]
 [![NPM version][npm-image]][npm-url]
 [![js-standard-style][standard-image]][standard-url]
 
 ***Patata*** is a project to help you to automate UI testing of native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) to make the process as approachable as possible.
+
+# Collaboration guidelines
+
+- Check that there are not errors or warnings executing `npm test`.
+- Check that you have covered new code with tests. Tests are inside the `./test` folder.
+- Check that the tool works on Linux/Mac/Windows.
+- Before add new features, open an issue on GitHub to be sure this was accepted with the main developers.
 
 # Start your QA project
 
@@ -293,6 +301,8 @@ Filters are based on the attribute names from the [HockeyApp API Versions](https
 [coveralls-image]: https://img.shields.io/coveralls/eridem/patata-cli.svg
 [patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
 [patata-url]: https://github.com/eridem/patata
+[coverity-scan-image]: https://scan.coverity.com/projects/10394/badge.svg
+[coverity-scan-url]: https://scan.coverity.com/projects/eridem-patata-cli
 
 # Copyrights
 
