@@ -16,7 +16,8 @@ describe(file, function () {
   const fakeConsole = {
     log: function () { _lastLogArgs = arguments },
     warn: function () { _lastLogArgs = arguments },
-    error: function () { _lastLogArgs = arguments }
+    error: function () { _lastLogArgs = arguments },
+    info: function () { _lastLogArgs = arguments }
   }
   const fakeColors = {
     gray: (m) => m,
@@ -30,12 +31,31 @@ describe(file, function () {
       _wasExitCalled = true
     }
   }
-  let opts = { console: fakeConsole, process: fakeProcess, colors: fakeColors }
+  const fakeYargsWithVerbose = {argv: {verbose: true}}
+  const fakeYargsWithoutVerbose = {argv: {verbose: true}}
+
+  let opts = { console: fakeConsole, process: fakeProcess, colors: fakeColors, yargs: fakeYargsWithVerbose }
 
   before(() => {
     _lastLogArgs = null
     _wasExitCalled = false
     _targetModule = target(opts)
+  })
+
+  describe('using .logMessage()', function () {
+    it('should return null if not message or description', function () {
+      expect(_targetModule.logMessage()).to.equal(null)
+    })
+
+    it('should return message with prefix', function () {
+      expect(_targetModule
+        .logMessage('Message', null, fakeColors.gray, fakeColors.green, fakeColors.blue)).to.equal('[Patata] Message')
+    })
+
+    it('should return message and description with prefix', () => {
+      expect(_targetModule
+        .logMessage('Message', 'Description', fakeColors.gray, fakeColors.green, fakeColors.blue)).to.equal('[Patata] Message Description')
+    })
   })
 
   describe('using .log()', function () {
@@ -50,6 +70,30 @@ describe(file, function () {
 
     it('should return print a message and description', () => {
       _targetModule.log('Message', 'Description')
+      _lastLogArgs[0].should.equal('[Patata] Message Description')
+    })
+  })
+
+  describe('using .debug()', function () {
+    it('should return print a message', () => {
+      let opts = { console: fakeConsole, process: fakeProcess, colors: fakeColors, yargs: fakeYargsWithoutVerbose }
+      _targetModule = target(opts)
+
+      _targetModule.debug('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
+    })
+
+    it('should not print if not message is passed', function () {
+      expect(_targetModule.debug()).equal(null)
+    })
+
+    it('should return print a message', () => {
+      _targetModule.debug('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
+    })
+
+    it('should return print a message and description', () => {
+      _targetModule.debug('Message', 'Description')
       _lastLogArgs[0].should.equal('[Patata] Message Description')
     })
   })
