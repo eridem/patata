@@ -3,15 +3,24 @@
   "version": "5.0.2",
   "description": "Native testing made easy with CLI",
   "main": "index.js",
-  "author": "Miguel Ángel Domínguez Coloma <m@eridem.net> (http://eridem.net)",
+  "author": {
+    "name": "Miguel Ángel Domínguez Coloma",
+    "email": "m@eridem.net",
+    "url": "http://eridem.net"
+  },
   "contributors": [],
   "license": "MIT",
   "homepage": "http://patata.io",
   "scripts": {
-    "pretest": "standard --fix",
-    "test": "nyc --cache mocha --timeout=8000 --check-leaks test/**/*.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "pretest": "node ./node_modules/standard/bin/cmd.js --fix",
+    "test": "npm run test-coverage && npm run allowed-coverage",
+    "test-coverage": "node ./node_modules/nyc/bin/nyc.js --cache mocha --timeout=8000 --check-leaks test/**/*.js",
+    "allowed-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 22 --functions 23 --branches 18 test/**/*.js",
+    "ideal-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 100 --functions 100 --branches 100 test/**/*.js",
+    "coveralls": "node ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
+    "prepublish": "npm test"
   },
+  "preferGlobal": true,
   "bin": {
     "patata": "index.js"
   },
@@ -26,6 +35,10 @@
     "automation",
     "cli"
   ],
+  "bugs": {
+    "url": "https://github.com/eridem/patata-cli/issues",
+    "email": "m@eridem.net"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:eridem/patata-cli.git"
@@ -54,7 +67,6 @@
     "yargs": "^4.8.1"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
     "coveralls": "^2.11.12",
     "ghooks": "^1.3.2",
     "mocha": "^3.1.0",
