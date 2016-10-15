@@ -1,6 +1,6 @@
 {
-  "name": "patata-cli",
-  "version": "5.0.2",
+  "name": "patata",
+  "version": "6.0.0",
   "description": "Native testing made easy",
   "main": "index.js",
   "author": {

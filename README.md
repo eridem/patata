@@ -15,10 +15,10 @@
 
 # Start your QA project
 
-## Install Patata-CLI
+## Installing Patata
 
 ```bash
-npm install -g patata-cli
+npm install -g patata
 # This may take a while due it install Cucumber and Appium
 ```
 
@@ -291,18 +291,18 @@ patata run "hockeyapp://?app=My App&filterName=notes&filterValue=/.*My Note.*/gi
 Filters are based on the attribute names from the [HockeyApp API Versions](https://support.hockeyapp.net/kb/api/api-versions) documentation page.
 
 
-[travis-url]: https://travis-ci.org/eridem/patata-cli
-[travis-image]: https://img.shields.io/travis/eridem/patata-cli/master.svg
+[travis-url]: https://travis-ci.org/eridem/patata
+[travis-image]: https://img.shields.io/travis/eridem/patata/master.svg
 [standard-url]: http://standardjs.com/
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
-[npm-url]: https://www.npmjs.com/package/patata-cli
-[npm-image]: https://img.shields.io/npm/v/patata-cli.svg
-[coveralls-url]: https://coveralls.io/github/eridem/patata-cli
-[coveralls-image]: https://img.shields.io/coveralls/eridem/patata-cli.svg
+[npm-url]: https://www.npmjs.com/package/patata
+[npm-image]: https://img.shields.io/npm/v/patata.svg
+[coveralls-url]: https://coveralls.io/github/eridem/patata
+[coveralls-image]: https://img.shields.io/coveralls/eridem/patata.svg
 [patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
 [patata-url]: https://github.com/eridem/patata
-[coverity-scan-image]: https://scan.coverity.com/projects/10394/badge.svg
-[coverity-scan-url]: https://scan.coverity.com/projects/eridem-patata-cli
+[coverity-scan-image]: https://img.shields.io/coverity/scan/10525.svg
+[coverity-scan-url]: https://scan.coverity.com/projects/eridem-patata
 
 # Copyrights
 

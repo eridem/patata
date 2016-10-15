@@ -12,11 +12,10 @@ deploy:
   provider: npm
   email: m@eridem.net
   api_key:
-    secure: rpuWholPc86RkwsENPEqsyW+7lT1ntX37BElbLSkPzYbLUnXL7d/S/JtznufjqWZxfzE687Wv3N+1ZuyQTNTIK/QmbQugxD1yxMagGRaP56CtvdFVcxDhMStbjCjoBbrbdmMG6+M8h/a0z1mF8Jg+XKPUSssXyQoq2MkJ73YS3OyluSnjaYSNRUaVxWklAoJhhFKNaqpgMQJbMdedGE2S/4PpIUfRL6B3iTHYrIPGJaueUteQ0UKu3YD9/4kOdbpacSgFoTHwVjQkxtmaDTRRPYxyXUggmj+1wP3jrNS7T5vnLtw4SOuw6Bl3BygYQYlR8IgZ31IvFy7DZhaaAj6ivajmDlbjg4RDIycwGm8EwEt9Zxug8PAcLwqbfC/UBICLvXDvjhGtVhsDp9uR5x/fTY9qsuyYS1pwQrE5LqIdD5iIvZsARwHCgDRzJv12bi/MXbNqWGPzb7lguEsG1xRSMTud6ouuLYI0f1z2LQCMF5ia0JBW573HLvRMFv5J0isbrhrZ57vkyQt0ds/Hq6tjevw7mBGOS+43xhALMm4n3uRAIxnogehP3NN/g7cGwxsQrbP0ahXtnV+S4KaCANR1r6BBhxX5jKaq1uOKvcxvbgbrfbIf7/9LtTEuon0awtiWou6q1TBVxfBPzfHmdXv5oLhYMb+qIkaTmbdnFrtAL8=
+    secure: ifK8O+uOjpfY24/zXRuYGMRKks0z7OvQZUNQ198nGDYx874xwnJmxynA+meOwgElm4WbyFb3SL5a1fjiucwJ8m3VHUn1m2r5eWeJMXjvUsHBxsAm1dpdlkXQbwKlTFQD17O2zwrtxj9+ZcNaj1TlKTwu0PHBJzPSPmR7KXF9TAC4az4hLu+cSSEE1PxxPvQwK6qqittlMlT4wlA5j73jBtDa4IFhFgD8VaSKnn1pD5JKLayMWnzQmUnRQLRxXyiF4vU1YN7aTfcRSKcs7DeCJgy3VR8Gbekw1voOybuJjJyt2FTpjuGQ5GjrJCWejLKem5xfNZUPQcwoTWmlR3eK2/2LABqkw/GFJj/yn3jFvwN85A1H0KDrxnCDzQM5ATmxZTpfOzC/ReyZ6vEx98dOooCd8ARy6sJdkPGg8PU2UzQeXY66g9E/BZO0uCdJsmQe+7ETdmvleEFUatO/jdi6gbKzxI3Qiz2CCve1Uj881G8gjHXq/B8p6lPwvXdrtyHcdoU7TNtOhWVjNRONybrgng2k4gE1TmrK1VoMHzK/cMmKWpNTz8MZRmQ6qkEAHIbu4wUzqGeKtN4l9Jt5fdo3CizXQ6Wyu7KTihxopoC8MAQPk1p53P3M3OLjKNJl9JtfBtQb2/8abrSzCzbs9P9mFdnkKihIa3TVTxHyybusGc8=
   on:
     tags: true
-    repo: eridem/patata-cli
-
+    repo: eridem/patata
 
 env:
   global:
@@ -31,7 +30,7 @@ before_install:
 addons:
   coverity_scan:
     project:
-      name: "eridem/patata-cli"
+      name: "eridem/patata"
       description: "Native testing made easy with CLI"
     notification_email: "m@eridem.net"
     build_command_prepend: ""
