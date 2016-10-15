@@ -6,6 +6,12 @@
 
 ***Patata*** is a project to help you to automate UI testing of native apps. It uses [Cucumber](https://cucumber.io/) and [Appium](http://appium.io/) to make the process as approachable as possible.
 
+If you love and use patata, use our badge!
+
+`[![patata](https://img.shields.io/badge/automation-patata-orange.svg)](https://github.com/eridem/patata)`
+
+[![patata](https://img.shields.io/badge/automation-patata-orange.svg)](https://github.com/eridem/patata)
+
 # Collaboration guidelines
 
 - Check that there are not errors or warnings executing `npm test`.
