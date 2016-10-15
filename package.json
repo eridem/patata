@@ -1,7 +1,7 @@
 {
   "name": "patata-cli",
   "version": "5.0.2",
-  "description": "Native testing made easy with CLI",
+  "description": "Native testing made easy",
   "main": "index.js",
   "author": {
     "name": "Miguel Ángel Domínguez Coloma",
@@ -36,12 +36,12 @@
     "cli"
   ],
   "bugs": {
-    "url": "https://github.com/eridem/patata-cli/issues",
+    "url": "https://github.com/eridem/patata/issues",
     "email": "m@eridem.net"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:eridem/patata-cli.git"
+    "url": "git@github.com:eridem/patata.git"
   },
   "config": {
     "ghooks": {
