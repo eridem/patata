@@ -1,5 +1,4 @@
 [![Build Status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
 [![Coverity Scan Build Status][coverity-scan-image]][coverity-scan-url]
 [![NPM version][npm-image]][npm-url]
 [![js-standard-style][standard-image]][standard-url]
@@ -24,8 +23,6 @@ The documentation was growing and it has been moved to a GitHub page: **<http://
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 [npm-url]: https://www.npmjs.com/package/patata
 [npm-image]: https://img.shields.io/npm/v/patata.svg
-[coveralls-url]: https://coveralls.io/github/eridem/patata
-[coveralls-image]: https://img.shields.io/coveralls/eridem/patata.svg
 [patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
 [patata-url]: https://github.com/eridem/patata
 [coverity-scan-image]: https://img.shields.io/coverity/scan/10525.svg
