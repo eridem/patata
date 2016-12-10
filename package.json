@@ -15,7 +15,7 @@
     "pretest": "node ./node_modules/standard/bin/cmd.js --fix",
     "test": "npm run test-coverage && npm run allowed-coverage",
     "test-coverage": "node ./node_modules/nyc/bin/nyc.js --cache mocha --timeout=8000 --check-leaks test/**/*.js",
-    "allowed-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 22 --functions 23 --branches 18 test/**/*.js",
+    "allowed-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 22 --functions 22 --branches 18 test/**/*.js",
     "ideal-coverage": "node ./node_modules/nyc/bin/nyc.js check-coverage --lines 100 --functions 100 --branches 100 test/**/*.js",
     "coveralls": "node ./node_modules/nyc/bin/nyc.js report --reporter=text-lcov | node ./node_modules/coveralls/bin/coveralls.js",
     "prepublish": "npm test"
