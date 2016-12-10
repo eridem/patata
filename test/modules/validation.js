@@ -65,7 +65,7 @@ describe(file, function () {
 
   describe('using .isPatataRootDir()', function () {
     it('should return config dir path', function () {
-      targetModule = target({ shell: fakeTestShell, settings: fakeSettingsStoragePath })
+      targetModule = target({ shell: fakeTestShell, setting: fakeSettingsStoragePath })
 
       targetModule.isPatataRootDir().should.equal(true)
     })
