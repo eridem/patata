@@ -1,6 +1,6 @@
 {
   "name": "patata",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "description": "Native testing made easy",
   "main": "index.js",
   "author": {
@@ -8,7 +8,25 @@
     "email": "m@eridem.net",
     "url": "http://eridem.net"
   },
-  "contributors": [],
+  "contributors": [
+    {
+      "name": "Ben Bultman",
+      "email": "bultman.ben@gmail.com",
+      "url": "https://github.com/bbultman"
+    },
+    {
+      "name": "Lenny Nilsson",
+      "url": "https://github.com/lennynilsson"
+    },
+    {
+      "name": "Paul Davies",
+      "url": "https://github.com/pedavies"
+    },
+    {
+      "name": "Matt Apperson",
+      "url": "https://appersonlabs.com/"
+    }
+  ],
   "license": "MIT",
   "homepage": "http://patata.io",
   "scripts": {
