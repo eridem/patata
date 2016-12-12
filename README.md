@@ -1,5 +1,5 @@
 [![Build Status][travis-image]][travis-url]
-[![Coverity Scan Build Status][coverity-scan-image]][coverity-scan-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 [![NPM version][npm-image]][npm-url]
 [![js-standard-style][standard-image]][standard-url]
 
@@ -13,9 +13,9 @@ Its goal is the reusability, where specifications can be shared between differen
 
 # Where is the documentation?
 
-The documentation was growing and it has been moved to a GitHub page: **<http://patata.io>**
+The documentation was growing and it has been moved to a GitHub page: **[http://patata.io][patata-url]**
 
-[![Documentation screenshot](doc/web-screenshot.png)](http://patata.io)
+[![Documentation screenshot][doc-image]][patata-url]
 
 [travis-url]: https://travis-ci.org/eridem/patata
 [travis-image]: https://img.shields.io/travis/eridem/patata/master.svg
@@ -25,5 +25,7 @@ The documentation was growing and it has been moved to a GitHub page: **<http://
 [npm-image]: https://img.shields.io/npm/v/patata.svg
 [patata-image]: https://img.shields.io/badge/automation-patata-orange.svg
 [patata-url]: https://github.com/eridem/patata
-[coverity-scan-image]: https://img.shields.io/coverity/scan/10525.svg
-[coverity-scan-url]: https://scan.coverity.com/projects/eridem-patata
+[coveralls-image]: https://coveralls.io/repos/github/eridem/patata/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/eridem/patata?branch=master
+[doc-image]: https://github.com/eridem/patata/raw/master/doc/web-screenshot.png
+[patata-url]: http://patata.io
