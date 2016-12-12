@@ -1,3 +1,9 @@
+```
++ lib
+  + modules
+    + binary-provider
+```
+
 # Binary Provider
 
 Binary Providers are ways to fetch the binary files and guess the platform. E.g. `APK` or `IPA` files, for `Android` and `iOS` respectively.

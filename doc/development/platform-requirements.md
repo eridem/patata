@@ -1,3 +1,11 @@
+```
++ lib
+  + modules
+    + platform
+      + requirements
+```
+
+
 # Platform Requirements
 
 Platform Requirements are validations against the host computer. As better the framework become and as much automatic tools it install, as less requirements should be need to check.
