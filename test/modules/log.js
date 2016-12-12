@@ -112,6 +112,20 @@ describe(file, function () {
     })
   })
 
+  describe('using .error()', function () {
+    it('should not print if not message is passed', function () {
+      expect(_targetModule.error()).equal(null)
+    })
+
+    it('should return print a message', () => {
+      _targetModule.error('Message')
+      _lastLogArgs[0].should.equal('[Patata] Message')
+
+      _targetModule.error(['Message'])
+      _lastLogArgs[0].should.equal('[Patata] Message')
+    })
+  })
+
   describe('using .exit()', function () {
     it('should not print if not message is passed', function () {
       expect(_targetModule.exit()).equal(null)
