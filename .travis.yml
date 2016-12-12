@@ -16,23 +16,3 @@ deploy:
   on:
     tags: true
     repo: eridem/patata
-
-env:
-  global:
-   # Coverity
-   - secure: "WYb84RK/bOlK2FsWsyRp8lMwmoHLC9b1seDGjumE6DqCB4zAB0C7aVA0H36MP8uOupNnmTYUpcSQhWn7Wtnyk7wIPk9GOsaztmN3RH2AHq5NJuos4IyTwyx4wzjMOkGTU2ww9iti6PFd9+w2CW3kyT+rJCWvZyo6aJK3X1IOUVxd2GtF+CPz7g6zZQ4K61QjxDsrCT5TtcF3I8q7wh2xkous9QgQUABSvI0k2SmRBI4koPIJXVn2i3CsYJfXQ/6GvUP5fR4jJScQuuMtZCN7FQ89JSdTybpeB9E0X6n7z57nTecW0b8Pl1VFVAvX5t/18PSi62dMMraiwSOq/OjkJhqSQDkEKABndxUys9QmoalatMxI/I9D9kMaV/EUO4GOTvWtMpFOQVHvrui1yqG12+rBUL+EIvA5JaD+o8eJiSYcejG/MNsgDMqopvcyitMwhTJtYScuLOEdSLzI1Fet82GakTsFtsIK3DjAzddUGOZ7wXiEBlS41Kw6P6GRv096ORIcEBkKqSMz9hMCi+p+qZJkQLoNMU/KRvWqzUL1CarKc44qLTpKbgjS5k9YRyDB4loGoWTcFSRo6Wk8GrNBmd38qgJ4NGACvqR6oB8EW9KdfZvefhAWQGxt7lwgYAHmYjS0B8FVpKeJl8ELu6loEt73SVsmLP0t63iFwvLhYX8="
-
-# Coverity
-before_install:
-      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
-# Coverity
-addons:
-  coverity_scan:
-    project:
-      name: "eridem/patata"
-      description: "Native testing made easy with CLI"
-    notification_email: "m@eridem.net"
-    build_command_prepend: ""
-    build_command: "--no-command --fs-capture-search ./lib/"
-    branch_pattern: "*"

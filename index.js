@@ -23,6 +23,7 @@ const HockeyApp = require('hockeyapp-api-wrapper')
 const yaml = require('js-yaml')
 const cucumberHtmlReporter = require('cucumber-html-reporter')
 const gherkinLint = { run: function () { require('gherkin-lint') } }
+const camelCase = require('camelcase')
 
 // Show CLI info
 if (yargs.argv._.length) {
@@ -35,11 +36,23 @@ const cwd = resolve(yargs.argv.cwd || process.cwd())
 process.chdir(cwd)
 
 // External dependencies to pass to the commands
-let dep = { yargs, join, resolve, console, colors, shell, process, __rootdirname, extend, url, asciify, http, net, fs, glob, querystring, HockeyApp, yaml, cucumberHtmlReporter, gherkinLint }
+let dep = { yargs, join, resolve, console, colors, shell, process, __rootdirname, extend, url, asciify, http, net, fs, glob, querystring, HockeyApp, yaml, cucumberHtmlReporter, gherkinLint, camelCase }
 
 // Internal dependencies
-const inDepFns = requireDir(join(__rootdirname, 'lib', 'modules'), { camelcase: true })
-Object.keys(inDepFns).forEach(name => { dep[name] = inDepFns[name](dep) })
+const inDepFns = requireDir(join(__rootdirname, 'lib', 'modules'), { camelcase: true, recurse: true })
+
+// Internal dependencies as tree
+function resolveInternalDependencies (src, dst) {
+  Object.keys(src).forEach(name => {
+    if (typeof src[name] === 'function') {
+      dst[camelCase(name)] = src[name](dep)
+    } else {
+      dst[camelCase(name)] = {}
+      resolveInternalDependencies(src[name], dst[camelCase(name)])
+    }
+  })
+}
+resolveInternalDependencies(inDepFns, dep)
 
 // Load commands from folder and pass dependencies
 const commandsFn = requireDir(join(__rootdirname, 'lib', 'commands'))

@@ -5,8 +5,8 @@ const chai = require('chai')
 chai.should()
 const expect = chai.expect
 
-const file = 'date-time.js'
-const target = require(join(__dirname, '../../lib/modules/', file))
+const file = '/lib/modules/utils/date-time.js'
+const target = require(join(__dirname, '../..', file))
 
 describe(file, function () {
   describe('using .dateTimeAsString()', function () {

@@ -5,7 +5,7 @@ const chai = require('chai')
 chai.should()
 
 const file = 'binary-provider-hockeyapp.js'
-const target = require(join(__dirname, '../../lib/modules/', file))
+const target = require(join(__dirname, '../../../lib/modules/binary-provider', file))
 
 describe(file, function () {
   before(function () {

@@ -4,8 +4,8 @@ const { join } = require('path')
 const chai = require('chai')
 chai.should()
 
-const file = 'binary-provider.js'
-const target = require(join(__dirname, '../../lib/modules/', file))
+const file = 'binary-provider-http.js'
+const target = require(join(__dirname, '../../../lib/modules/binary-provider', file))
 
 describe(file, function () {
   before(function () {
