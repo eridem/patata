@@ -16,15 +16,6 @@ describe(file, function () {
   let lastInput
 
   // Mocked modules
-  let androidPlatformVerification = {
-    verify: () => {
-      lastInput = 'android'
-    }
-  }
-  let iOSPlatformVerification = {verify: () => {
-    lastInput = 'ios'
-  }
-  }
   let log = {log: () => {}}
   let help = {
     errorDueNonExistingPlatform: (platform) => {
@@ -32,23 +23,22 @@ describe(file, function () {
       raisedError = true
     }
   }
+  let dummyPlatform = {
+    verify: () => {
+      lastInput = 'dummyPlatform'
+    }
+  }
 
   before(function () {
     lastInput = null
     raisedError = false
-    targetModule = target({ help, log, platform: { requirements: { android: androidPlatformVerification, ios: iOSPlatformVerification } } })
+    targetModule = target({ help, log, platform: { requirements: { dummyPlatform } } })
   })
 
   describe('using .verify()', function () {
-    it('should verify Android if this is the selected platform', function () {
-      targetModule.verify('android')
-      expect(lastInput).to.equal('android')
-      expect(raisedError).to.equal(false)
-    })
-
-    it('should verify iOS if this is the selected platform', function () {
-      targetModule.verify('ios')
-      expect(lastInput).to.equal('ios')
+    it('should verify DummyPlatform if this is the selected platform', function () {
+      targetModule.verify('dummyPlatform')
+      expect(lastInput).to.equal('dummyPlatform')
       expect(raisedError).to.equal(false)
     })
 
