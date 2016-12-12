@@ -33,7 +33,7 @@
     "pretest": "standard --fix",
     "test": "npm run test-coverage && npm run allowed-coverage",
     "test-coverage": "nyc --cache mocha --timeout=8000 --check-leaks test/**/*.js",
-    "allowed-coverage": "nyc check-coverage --lines 24 --functions 23 --branches 20 test/**/*.js",
+    "allowed-coverage": "nyc check-coverage --lines 25 --functions 24 --branches 21 test/**/*.js",
     "ideal-coverage": "nyc check-coverage --lines 100 --functions 100 --branches 100 test/**/*.js",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "prepublish": "npm test"

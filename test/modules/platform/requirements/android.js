@@ -5,8 +5,8 @@ const chai = require('chai')
 chai.should()
 const expect = chai.expect
 
-const file = 'verify-android.js'
-const target = require(join(__dirname, '../../lib/modules/', file))
+const file = '/lib/modules/platform/requirements/android.js'
+const target = require(join(__dirname, '../../../..', file))
 
 describe(file, function () {
   let targetModule

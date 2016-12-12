@@ -4,8 +4,8 @@ const { join } = require('path')
 const chai = require('chai')
 chai.should()
 
-const file = 'verify-ios.js'
-const target = require(join(__dirname, '../../lib/modules/', file))
+const file = '/lib/modules/platform/requirements/ios.js'
+const target = require(join(__dirname, '../../../..', file))
 
 describe(file, function () {
   let targetModule
