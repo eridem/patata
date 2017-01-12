@@ -68,11 +68,11 @@
     }
   },
   "dependencies": {
-    "appium": "^1.5.3",
+    "appium": "^1.6.3",
     "asciify": "^1.3.5",
     "camelcase": "^4.0.0",
     "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
+    "chai-as-promised": "^6.0.0",
     "chalk": "^1.1.3",
     "cucumber": "^1.2.2",
     "cucumber-html-reporter": "^0.3.7",
@@ -81,16 +81,16 @@
     "hockeyapp-api-wrapper": "^0.x.x",
     "js-yaml": "^3.7.0",
     "require-dir": "^0.3.1",
-    "shelljs": "^0.7.5",
-    "wd": "^0.4.0",
-    "yargs": "^4.8.1"
+    "shelljs": "^0.7.6",
+    "wd": "^1.1.1",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.12",
     "ghooks": "^1.3.2",
-    "mocha": "^3.1.0",
+    "mocha": "^3.2.0",
     "mocha-lcov-reporter": "^1.2.0",
-    "nyc": "^8.3.0",
-    "standard": "^8.3.0"
+    "nyc": "^10.0.0",
+    "standard": "^8.6.0"
   }
 }
