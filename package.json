@@ -1,6 +1,6 @@
 {
   "name": "patata",
-  "version": "6.0.2",
+  "version": "7.0.0",
   "description": "Native testing made easy",
   "main": "index.js",
   "author": {
